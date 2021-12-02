@@ -2,7 +2,7 @@
 	<v-container>
 		<v-stepper v-model="e6">
 			<form @submit.prevent="onSubmit">
-
+				
 				<v-stepper-step color="secondary" :complete="e6 > 1" step="1">
 					매물 종류 선택
 				</v-stepper-step>
@@ -14,15 +14,15 @@
 							<v-radio value="officetel" label="오피스텔"></v-radio>
 						</v-radio-group>
 					</v-card>
-
+							
 					<v-btn class="my-3" color="secondary" @click="e6 = 2">다음</v-btn>
 				</v-stepper-content>
-
+		
 
 				<v-stepper-step color="secondary" :complete="e6 > 2" step="2">
 					중개사무소 정보
 				</v-stepper-step>
-
+				
 				<v-stepper-content step="2">
 					<v-card class="mb-5 pa-5" width="500" flat>
 
@@ -37,9 +37,9 @@
 
 						<span>중개사 이메일</span>
 						<v-text-field v-model="agentEmail" required solo class="mt-3"></v-text-field>
-
+						
 						<span>중개사 이름</span>
-						<v-text-field v-model="agentName" required solo class="mt-3"></v-text-field>
+						<v-text-field v-model="agentName" required solo class="mt-3"></v-text-field>  
 
 						<span>중개사 연락처</span>
 						<v-text-field v-model="agentPhone" required solo class="mt-3"></v-text-field>
@@ -81,7 +81,7 @@
 
 						<span>건물사진 등록</span>
 							<v-card flat>
-
+								
 								<v-file-input class="mt-3" v-model="files" @change="selectImg" label="사진 선택"
 								chips multiple required solo ></v-file-input>
 
@@ -91,20 +91,24 @@
 
 								<v-card-actions>
 									<v-spacer></v-spacer>
-									<v-btn v-if="!completeImage" @click="checkImage" class="mt-5 ml-3 secondary">확인</v-btn>
-									<v-btn v-else class="mt-5 ml-3 secondary--text" icon>
-										<v-icon>check</v-icon>
-									</v-btn>
-								</v-card-actions>
+									<v-progress-circular v-if="delayImage" indeterminate color="secondary"></v-progress-circular>
+									<div v-else>
+										<v-btn v-if="!completeImage" @click="checkImage" class="mt-5 ml-3 secondary">확인</v-btn>
+										<v-btn v-else class="mt-5 ml-3 secondary--text" icon>
+											<v-icon>check</v-icon>
+										</v-btn>
+									</div>
 
+								</v-card-actions>
+							
 							</v-card>
 
 							<span>입주가능일</span>
 								<div class="mx-1">
-									<v-menu ref="menu" v-model="menu" :return-value.sync="date"
+									<v-menu ref="menu" v-model="menu" :return-value.sync="date" 
 										transition="scale-transition" offset-y min-width="auto">
 										<template v-slot:activator="{ on }">
-											<v-text-field  v-model="moveinDate" v-on="on"
+											<v-text-field  v-model="moveinDate" v-on="on" 
 												append-icon="mdi-calendar" required solo class="mt-3"></v-text-field>
 										</template>
 										<v-date-picker color="secondary" v-model="moveinDate" no-title scrollable>
@@ -113,17 +117,17 @@
 											<v-btn text @click="$refs.menu.save(date)">OK</v-btn>
 										</v-date-picker>
 									</v-menu>
-								</div>
+								</div> 
 
 							<span>방구조</span>
 							<div class="mx-1">
 								<v-select :items='roomTypes' v-model="roomType" required solo class="mt-3" ></v-select>
-							</div>
+							</div> 
 
 							<span>판매유형</span>
 							<div class="mx-1">
 								<v-select :items='salesTypes' v-model="salesType" required solo class="mt-3" ></v-select>
-							</div>
+							</div> 
 
 							<span>보증금</span>
 							<div class="mx-1">
@@ -138,7 +142,7 @@
 						<v-btn class="mb-5" text @click="e6 = 2">이전</v-btn>
 						<v-btn class="mb-5" color="secondary" @click="e6 = 4" :disabled="!completeAddr && !completeImage">다음</v-btn>
 					</v-stepper-content>
-
+				
 
 				<v-stepper-step color="secondary" :complete="e6 > 4" step="4">
 					매물 입력사항(2)
@@ -149,8 +153,8 @@
 						<div class="d-flex">
 							<v-text-field placeholder="방의 평수" v-model="size" required solo class="mt-3 mr-3" ></v-text-field>
 							<v-text-field placeholder="m2" v-model="sizeM2" required solo class="mt-3" readonly></v-text-field>
-						</div>
-
+						</div> 
+						
 						<span>관리비 포함 항목</span>
 						<div class="mx-1 mt-3" >
 							<input type="checkbox" value="전기세" v-model="manageCostIncChk">
@@ -166,7 +170,7 @@
 							<input type="checkbox" value="TV" v-model="manageCostIncChk">
 								<label for="TV">TV</label>
 						</div>
-
+						
 						<span>관리비</span>
 						<v-text-field label="만원" v-model="manageCost" required solo class="mt-3"></v-text-field>
 
@@ -187,7 +191,7 @@
 							<input type="checkbox" value="전자레인지" v-model="optionsChk">
 								<label for="전자레인지" class="check">전자레인지</label>
 						</div>
-						<div class="mx-1">
+						<div class="mx-1">							
 							<input type="checkbox" value="옷장" v-model="optionsChk">
 								<label for="옷장" class="check">옷장</label>
 							<input type="checkbox" value="책상" v-model="optionsChk">
@@ -202,35 +206,35 @@
 								<label for="싱크대" class="check">싱크대</label>
 							<input type="checkbox" value="신발장" v-model="optionsChk">
 								<label for="신발장" >신발장</label>
-						</div>
-
+						</div> 
+						
 						<span>반려동물</span>
 						<div class="mx-1">
 							<v-select :items='petcheck' placeholder="반려동물" v-model="pets" required solo class="mt-3"></v-select>
-						</div>
+						</div> 
 
 						<span>주차</span>
 						<div class="mx-1">
 							<v-select :items='parkings' placeholder="주차" v-model="parking" required solo class="mt-3"></v-select>
-						</div>
+						</div>  
 					</v-card>
 
-					<v-btn class="mb-5" text @click="e6 = 3">이전</v-btn>
+					<v-btn class="mb-5" text @click="e6 = 3">이전</v-btn>		
 					<v-btn class="mb-5" color="secondary" @click="e6 = 5">다음</v-btn>
 				</v-stepper-content>
-
+			
 				<v-stepper-step color="secondary" :complete="e6 > 5" step="5">
 					매물 입력사항(3)
 				</v-stepper-step>
-
+				
 				<v-stepper-content step="5">
 					<v-card class="mb-5 pa-5" width="500" flat>
 
 						<span>인근 지하철</span>
 						<v-text-field v-model="nearSubways" required solo class="mt-3"></v-text-field>
-
+				
 						<span>엘리베이터</span>
-						<v-select :items='exist' v-model="elevator" required solo class="mt-3"></v-select>
+						<v-select :items='exist' v-model="elevator" required solo class="mt-3"></v-select> 
 
 						<span>층수</span>
 						<div class="d-flex">
@@ -245,13 +249,13 @@
 					<v-btn class="mb-5" text @click="e6 = 4">이전</v-btn>
 					<v-btn class="mb-5" color="secondary" @click="e6 = 6">다음</v-btn>
 				</v-stepper-content>
-
+				
 				<v-stepper-step color="secondary" step="6">
 					매물 입력사항(4)
 				</v-stepper-step>
 
 				<v-stepper-content step="6">
-					<v-card class="mb-5 pa-5" width="500" flat>
+					<v-card class="mb-5 pa-5" width="500" flat> 
 
 						<span>소개글</span>
 						<v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" v-model="title" required solo class="mt-3"></v-text-field>
@@ -264,44 +268,44 @@
 					<v-btn class="mb-5" color="secondary" type="submit" @click="onSubmit">등록</v-btn>
 
 				</v-stepper-content>
-
-					<!-- 자동으로 입력되는 부분 -->
-					<div class="mx-3" hidden>
+					
+					<!-- 자동으로 입력되는 부분 --> 
+					<div class="mx-3" hidden> 
 							<v-icon color="black" size="30px">label</v-icon>
 							중개사무소 좌표
 							<div class="mx-1">
 									<v-text-field placeholder="" v-model="agentLat" required solo class="mt-3" readonly></v-text-field>
-							</div>
+							</div> 
 					</div>
-					<div class="mx-3" hidden>
+					<div class="mx-3" hidden> 
 							<v-icon color="black" size="30px">label</v-icon>
 							중개사무소 좌표
 							<div class="mx-1">
 									<v-text-field placeholder="" v-model="agentLng" required solo class="mt-3" readonly></v-text-field>
-							</div>
+							</div> 
 					</div>
-					<div class="mx-3" hidden>
+					<div class="mx-3" hidden> 
 							<v-icon color="black" size="30px">label</v-icon>
 							좌표(lat)
 							<div class="mx-1">
 									<v-text-field placeholder="좌표(lat)" v-model="lat" required solo class="mt-3" readonly></v-text-field>
-							</div>
+							</div> 
 					</div>
-					<div class="mx-3" hidden>
+					<div class="mx-3" hidden> 
 							<v-icon color="black" size="30px">label</v-icon>
 							좌표(lng)
 							<div class="mx-1">
 									<v-text-field placeholder="좌표(lng)" v-model="lng" required solo class="mt-3" readonly></v-text-field>
-							</div>
+							</div> 
 					</div>
-					<div class="mx-3" hidden>
+					<div class="mx-3" hidden> 
 							<v-icon color="black" size="30px">label</v-icon>
 							작성자
 							<div class="mx-1">
 									<v-text-field placeholder="" v-model="agentId" required solo class="mt-3" readonly></v-text-field>
-							</div>
+							</div> 
 					</div>
-
+	
 			</form>
 		</v-stepper>
 	</v-container>
@@ -375,14 +379,15 @@ export default {
 			petcheck: ['가능', '불가능', '고양이만', '확인필요'],
 			completeAgentAddr: false,
 			completeAddr: false,
-			completeImage: false
+			completeImage: false,
+			delayImage: false
 		}
 	},
 	computed: {
 		...mapState(['userInfo']),
 		sizeM2 () {
 			return this.size * 3.305785
-		}
+		}  
 	},
 	mounted() {
 		this.agentId = this.userInfo.userId
@@ -402,27 +407,29 @@ export default {
 				}
 
 				this.sendImg()
+
 			}catch(e) {
 				this.urls = []
 				this.imageStr = ''
 				this.completeImage = false
 			}
 		},
-		sendImg() {
+		async sendImg() {
 			const formData = new FormData()
 
 			formData.set('key', 'ca442ada99076d1fda16e811a57f9d6d')
 
+			this.delayImage = true
+
 			for (let i = 0; i < this.files.length; i++) {
 				formData.append('image', this.files[i])
 
-				axios.post(`https://api.imgbb.com/1/upload`, formData).then(res => {
+				await axios.post(`https://api.imgbb.com/1/upload`, formData).then(res => {
 					console.log(res.data.data.display_url)
 					this.imageStr += res.data.data.display_url + ','
-
-					alert('확인버튼을 눌러주세요.')
 				})
 			}
+			this.delayImage = false
 		},
 		checkImage () {
 			this.image = this.imageStr.slice(0, -1)
@@ -431,19 +438,19 @@ export default {
 			this.completeImage = true
 		},
 		onSubmit () {
-			const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title,
+			const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
 			description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
 			lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId} = this
 
-			this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title,
+			this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
 			description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
 			lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId})
 		},
 		onApiAddress () {
 			axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,
 				{ headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-
-				this.agentId = this.userInfo.userId
+						
+				this.agentId = this.userInfo.userId 
 				this.lat = res.data.documents[0].y
 				this.lng = res.data.documents[0].x
 				this.local1 = res.data.documents[0].road_address.region_1depth_name
@@ -456,7 +463,7 @@ export default {
 		onApiAgentAddress () {
 			axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.agentAddress}`,
 			{ headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-
+					
 				this.agentLat = res.data.documents[0].y
 				this.agentLng = res.data.documents[0].x
 
