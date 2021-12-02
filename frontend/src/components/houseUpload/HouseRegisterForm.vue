@@ -64,8 +64,8 @@
 
                                 <span>매물의 주소를 입력하세요</span>
                                 <v-list-item>
-                                <v-text-field placeholder="" v-model="address" required solo class="mt-3"></v-text-field>
-                                <button class="mb-5 ml-4" @click="onApiAddress">확인하기</button>
+                                    <v-text-field placeholder="" v-model="address" required solo class="mt-3"></v-text-field>
+                                    <button class="mb-5 ml-4" @click="onApiAddress">확인하기</button>
                                 </v-list-item>
 
                                 <span>주소</span>
@@ -447,23 +447,25 @@ export default {
         onApiAddress () {
             axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,
             { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-                alert("입력성공")
-                console.log(res.data)
-            this.agentId = this.userInfo.userId 
-            this.lat = res.data.documents[0].y
-            this.lng = res.data.documents[0].x
-            this.local1 = res.data.documents[0].road_address.region_1depth_name
-            this.local2 = res.data.documents[0].road_address.region_2depth_name
-            this.local3 = res.data.documents[0].road_address.region_3depth_name
+                
+                    this.agentId = this.userInfo.userId 
+                    this.lat = res.data.documents[0].y
+                    this.lng = res.data.documents[0].x
+                    this.local1 = res.data.documents[0].road_address.region_1depth_name
+                    this.local2 = res.data.documents[0].road_address.region_2depth_name
+                    this.local3 = res.data.documents[0].road_address.region_3depth_name
+                    alert("입력성공")
+                    console.log(res.data)
             })
         },
         onApiAgentAddress () {
             axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.agentAddress}`,
             { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-                alert("입력성공")
-                console.log(res.data)
+                
                 this.agentLat = res.data.documents[0].y
                 this.agentLng = res.data.documents[0].x
+                alert("입력성공")
+                console.log(res.data)
             })
         },
     },
