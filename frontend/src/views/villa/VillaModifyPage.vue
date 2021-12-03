@@ -1,19 +1,19 @@
 <template>
   <div>
-        <villa-modify-form :villa="villa" @submit="onSubmit"/>
+        <house-modify-form :house="villa" @submit="onSubmit"/>
   </div>  
 </template>
 
 <script>
 
-import VillaModifyForm from '@/components/villa/VillaModifyForm.vue'
+import HouseModifyForm from '@/components/house/HouseModifyForm'
 import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'VillaModifyPage',
     components: {
-        VillaModifyForm
+        HouseModifyForm
     },
     props: {
         villaNo: {
