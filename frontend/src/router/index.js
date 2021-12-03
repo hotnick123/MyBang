@@ -14,7 +14,7 @@ import RoomMateList from '../views/roommate/List'
 import RoomMateModify from '../views/roommate/Modify'
 import RoomMateDetail from '../views/roommate/Detail'
 
-import HouseRegisterPage from '@/views/houseUpload/HouseRegisterPage'
+import HouseRegisterPage from '@/views/house/HouseRegisterPage'
 import VillaReadPage from '@/views/villa/VillaReadPage'
 import VillaModifyPage from '@/views/villa/VillaModifyPage'
 

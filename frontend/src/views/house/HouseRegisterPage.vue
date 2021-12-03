@@ -9,7 +9,7 @@
 
 <script>
 
-import HouseRegisterForm from '@/components/houseUpload/HouseRegisterForm.vue'
+import HouseRegisterForm from '@/components/house/HouseRegisterForm'
 import axios from 'axios'
 
 export default {
