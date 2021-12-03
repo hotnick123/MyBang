@@ -76,6 +76,17 @@
 				</div>
 				<gongzi-preview></gongzi-preview>
 			</article>
+
+			<article>
+				<div class="more_btn">
+					<h2>룸메구하기</h2>
+					<v-btn @click="roomMateList" depressed>
+						더보기
+					</v-btn>
+				</div>
+				<room-mate-preview></room-mate-preview>
+			</article>
+
 		</div>
 		<!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
 
@@ -195,13 +206,15 @@ import {mapState} from 'vuex'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import GongziPreview from '../components/gongzi/GongziPreview.vue'
+import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 
   export default {
 		name: 'MainPage',
 	  components: {
 			Swiper,
 			SwiperSlide,
-			GongziPreview
+			GongziPreview,
+			RoomMatePreview
 		},
     data() {
       return {
@@ -233,6 +246,9 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
       },
 			gongziList () {
 				this.$router.push({ name: 'GongziListPage' })
+			},
+			roomMateList () {
+				this.$router.push({ name: 'RoomMateList' })
 			}
     },
 
