@@ -7,7 +7,7 @@
         <v-btn class="button_place" color="white" v-else  @click="oneroomModifyFail">
             내용 수정
         </v-btn>
-        <v-btn class="button_place" color="white" :to="{ name: 'BrokerHouseListPage' }">
+        <v-btn class="button_place" color="white" :to="{ name: 'SellerHouseListPage' }">
             목록으로 돌아가기
         </v-btn>
     </div>
