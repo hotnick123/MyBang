@@ -1,30 +1,42 @@
 <template>
-	<v-sheet >
-		<v-data-table
-			:headers="headerTitle"
-			:items="gongzis"
-			:items-per-page="10"
-			class="gongziTable"
-			@click:row="readGongzi">
-		</v-data-table>
-	</v-sheet>
+
+	<div class="list_wrap">
+		<h1>공지사항</h1>
+
+		<table class="table table-hover">
+
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성일자</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr v-for="(gongzi, index) in gongzis" :key="index">
+					<td>{{gongzi.gongziNo}}</td>
+					<td><a @click="readGongzi(gongzi.gongziNo)">{{gongzi.title}}</a></td>
+					<td>{{gongzi.createdDate}}</td>
+					<td>{{gongzi.view}}</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
 </template>
 
 
 <script>
 
+
+
 export default {
   name: 'GongziList',
 	data() {
 		return {
-			headerTitle: [
-				{ text: '번호', value: 'gongziNo', width: "30px" },
-				{ text: '제목', value: 'title', width: "300px" },
-				// { text: '작성자', value: 'writer', width: "70px" },
-				{ text: '작성일자', value: 'createdDate', width: "70px" },
-				{ text: '조회수', value: 'view', width: "70px" },
-
-			],
 		}
 	},
 	props: {
@@ -33,10 +45,10 @@ export default {
 		}
 	},
 	methods: {
-		readGongzi(gongzi) {
-			console.log(gongzi)
-			this.$router.push(
-				{ name: 'GongziReadPage', query: { gongziNo: gongzi.gongziNo } }
+		readGongzi(gongziNo) {
+			this.$router.push({ 
+				name: 'GongziReadPage',
+				query: { "gongziNo": gongziNo } }
 			)
 		}
 	}
@@ -44,13 +56,126 @@ export default {
 </script>
 
 <style scoped>
-	.gongziTable{
-		box-shadow: none;
+
+
+	.list_wrap {
+		width: 1200px;
+		/*height: 100vh;*/
+		display: flex;
+		flex-direction: column;
+		/*justify-content: space-evenly;*/
+		align-items: center;
+		margin: 0 auto;
+		/*border: 1px solid red;*/
+		margin-top: 80px;
+		padding-bottom: 80px;
+		font-family: 'Gowun Dodum', sans-serif;
+	}
+
+	.v-application a {
+		text-decoration: none;
+		color: yellow;
+		padding: 5px;
+	}
+
+	h1 {
+		font-size: 33px;
+		font-weight: bold;
+		width: 100%;
+		color: #000;
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+
+	/*테이블*/
+	table {
+		margin-top: 50px;
+		width: 100%;
+		/*table-layout: fixed;*/
+		text-align: center;
 		border-top: 1px solid #555;
-		border-radius: 0;
+		/*border-collapse: collapse;*/
+
+	}
+
+	table th, td {
+		padding: 20px;
+		/*border-bottom: 1px solid #444444;*/
+	}
+
+	table thead th {
+		border-bottom:none;
+		background-color: #f5f5f5;
+	}
+
+	table thead tr th:nth-child(1) {
+		width: 7%;
+	}
+
+	table thead tr th:nth-child(2) {
+		width: 63%;
+	}
+
+	table thead tr th:nth-child(3) {
+		width: 10%;
+	}
+
+	table thead tr th:nth-child(4) {
+		width: 13%;
+	}
+
+	table thead tr th:nth-child(5) {
+		width: 7%;
+	}
+
+	tbody td {
+		padding: 20px 0;
+	}
+
+	table tbody tr:last-child {
+		border-bottom: 1px solid #555;
+
+	}
+
+	table tbody tr td:nth-child(2) {
+		text-align: justify;
+
+	}
+
+	table tbody tr td:nth-child(2) a {
+		color: #212529;
+		display: block;
+		padding: 0px 35px;
+	}
+
+
+	.btn_wrap {
+		width: 100%;
+	}
+
+	.btn {
+		float: right;
+	}
+
+	/*b-button {*/
+	/*	width: 90px;*/
+	/*	height: 35px;*/
+	/*	color: #555;*/
+	/*	background-color: rgb(222, 221, 221);*/
+	/*	border: none;*/
+	/*	border-radius: 5px;*/
+	/*	font-size: 18px;*/
+	/*	line-height: 35px;*/
+	/*	text-align: center;*/
+	/*	font-family: 'Gowun Dodum', sans-serif;*/
+	/*}*/
+
+	.pagination {
 		margin-top: 50px;
 	}
 
+	.page-item .page-link {
+		color: red;
+	}
 
 
 </style>

@@ -32,6 +32,7 @@ export default {
 	},
 	methods: {
 		register () {
+			this.writer = this.userInfo.userId
 			const { title, writer, description } = this
 			this.$emit('submit', { title, writer, description })
 		},
