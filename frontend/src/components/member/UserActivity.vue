@@ -64,7 +64,7 @@
           내 매물 목록
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          
+
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -88,7 +88,7 @@ export default {
       houseList: null,
       dataPerPage: 3,
       curPageNum: 1,
-      
+
     }
   },
   computed: {
@@ -127,7 +127,7 @@ export default {
       this.roomMateCommentList = res.data.reverse()
       console.log(this.roomMateCommentList)
     })
-    
+
   },
   methods: {
     // roommateDetail (id) {

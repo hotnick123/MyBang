@@ -3,7 +3,7 @@
     <v-main>
       <Header />
         <router-view/>
-      <Footer />
+	    <Footer />
     </v-main>
   </v-app>
 </template>
@@ -14,8 +14,8 @@ import Footer from '../src/layouts/Footer'
 
 export default {
   name: 'App',
-  components: { 
-    Header, Footer 
+  components: {
+    Header, Footer
   },
   created(){
       this.$store.dispatch('crawlFind', 'daumnews')
@@ -23,7 +23,7 @@ export default {
   },
 
   data: () => ({
-    
+
   }),
 };
 </script>

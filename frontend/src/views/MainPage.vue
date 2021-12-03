@@ -8,7 +8,6 @@
 				<div class="swiper-pagination" slot="pagination"></div>
 				<div class="swiper-button-prev" slot="button-prev"></div>
 				<div class="swiper-button-next" slot="button-next"></div>
-
 			</swiper>
 			<div id=tabHouse>
 				<h1 class="main_text">어떤 집을 찾고 있나요?</h1>
@@ -486,12 +485,12 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 		content: '';
 		background: #adf5f6;
 		border-radius: 0 0 30px 0;
-		width: 64%;
+		width: 70%;
 		height: 500px;
 		position: absolute;
 		top: 50%;
 		left: 0%;
-		transform: translate(-56%, -50%);
+		transform: translate(-60%, -50%);
 	}
 
 	.store::after, .store .title_bg::after, .store .product::after, .store .product .itemImg::after {
@@ -625,6 +624,12 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 		/*float: right;*/
 		transition: 0.5s;
 		box-sizing: border-box;
+	}
+
+	#icon_wrap .inner .icon article::after {
+		content: "";
+		display: block;
+		clear: both;
 	}
 
 	#icon_wrap .inner .icon article {
