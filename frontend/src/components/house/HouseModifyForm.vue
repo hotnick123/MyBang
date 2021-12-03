@@ -293,7 +293,7 @@
                     <div class="mt-3">
                         <v-btn class="button_place" color="secondary" tile large button type="submit">수정완료</v-btn>
                         <v-btn class="button_place" color="white" @click="onDelete">삭제</v-btn> 
-                        <v-btn class="button_place" color="white" :to="{ name: 'BrokerHouseListPage' }">목록으로 돌아가기</v-btn>
+                        <v-btn class="button_place" color="white" :to="{ name: 'SellerHouseListPage' }">목록으로 돌아가기</v-btn>
                     </div>
                 </v-stepper-items>
             </form>
@@ -445,7 +445,7 @@ export default {
                 axios.delete(`http://localhost:7777/villa/${villaNo}`)
                     .then(() => {
                         alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'BrokerHouseListPage' })
+                        this.$router.push({name: 'SellerHouseListPage' })
                     })
                     .catch(err => {
                         alert(err.response.data.message)
@@ -455,7 +455,7 @@ export default {
                 axios.delete(`http://localhost:7777/oneroom/${oneroomNo}`)
                     .then(() => {
                         alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'BrokerHouseListPage' })
+                        this.$router.push({name: 'SellerHouseListPage' })
                     })
                     .catch(err => {
                         alert(err.response.data.message)
@@ -465,7 +465,7 @@ export default {
                 axios.delete(`http://localhost:7777/officetel/${officetelNo}`)
                     .then(() => {
                         alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'BrokerHouseListPage' })
+                        this.$router.push({name: 'SellerHouseListPage' })
                     })
                     .catch(err => {
                         alert(err.response.data.message)
