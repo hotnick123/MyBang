@@ -14,10 +14,11 @@
 								</v-btn>
 							</template>
 							<v-list>
+								<!-- 저장 및 수정 삭제 버튼 -->
 								<v-list-item @click="modifyGongzi">
 									수정
 								</v-list-item>
-								<v-list-item @click="dialog = true">
+								<v-list-item @click="deleteGongzi">
 									삭제
 								</v-list-item>
 							</v-list>
@@ -35,61 +36,13 @@
 				</div>
 
 				<div class="detail-button">
+					
 					<b-button @click="gongziList" class="btn_list">목록</b-button>
 				</div>
 			</div>
 		</div>
+		
 
-		<!--
-
-		<v-card class="pa-3 my-5" color="grey lighten-4">
-			<v-row>
-				<v-col cols="12" md="11">
-					<v-text-field v-model="title" solo readonly></v-text-field>
-				</v-col>
-				<v-col cols="12" md="1">
-					<v-menu offset-y>
-						<template v-slot:activator="{ on, attrs }">
-							<v-btn class="mt-1" v-on="on" v-bind="attrs" icon>
-								<v-icon>mdi-dots-vertical</v-icon>
-							</v-btn>
-						</template>
-						<v-list>
-							<v-list-item @click="modifyGongzi">
-								수정
-							</v-list-item>
-							<v-list-item @click="dialog = true">
-								삭제
-							</v-list-item>
-						</v-list>
-					</v-menu>
-				</v-col>
-			</v-row>
-	
-			<v-textarea v-model="description" height="400" solo readonly></v-textarea>
-	
-			<v-card-actions>
-				<div>
-					<v-card-text class="caption my-n3">작성자 {{ gongzi.writer }}</v-card-text>
-					<v-card-text class="caption mt-n6">작성일자 {{ gongzi.createdDate }}</v-card-text>
-				</div>
-				
-				<v-spacer></v-spacer>
-				<v-btn @click="gongziList" class="white">목록</v-btn>
-			</v-card-actions>
-		</v-card>
-		-->
-
-		<v-dialog v-model="dialog" width="400">
-			<v-card>
-				<v-card-title class="mb-10">정말 삭제하시겠습니까?</v-card-title>
-				<v-card-actions>
-					<v-btn @click="dialog = false" text>취소</v-btn>
-					<v-spacer></v-spacer>
-					<v-btn @click="deleteGongzi" text>확인</v-btn>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
 	</v-sheet>
 </template>
 
@@ -149,7 +102,7 @@ export default {
 		},
 		gongziList () {
 			this.$router.push({ name: 'GongziListPage' })
-		}
+		},
 	}
 }
 </script>
