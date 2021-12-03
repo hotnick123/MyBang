@@ -135,15 +135,15 @@ export default {
     }
   },
   mounted () {
+    axios.get('http://localhost:7777/station/lists').then(res => {
+      this.stationList = res.data
+    }) 
+
     setTimeout(() => {
       this.markersOnMap()
       this.addGuMarkerPolygon()
       this.guMarkerEvent()
     }, 1000)
-
-    axios.get('http://localhost:7777/station/lists').then(res => {
-      this.stationList = res.data
-    }) 
   },
   methods: {
     idle () {
