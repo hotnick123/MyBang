@@ -1,17 +1,22 @@
 <template>
-    <v-card class="mx-auto" width="500" flat>
-        <InfoDetail :info="oneroom"></InfoDetail>
+    <div style="width: 500px; margin-left:auto; margin-right:auto">
+        <div class="mt-10">
+            <h1 align="left">원룸</h1>
+        </div>
+        <v-card class="mx-auto mt-10" width="500" flat>
+            <InfoDetail :info="oneroom"></InfoDetail>
 
-        <v-card-actions>
-            <v-btn color="secondary" :to="{ name: 'OneroomModifyPage', params: { oneroomNo: this.oneroomNo } }">
-                수정
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn color="white" :to="{ name: 'SellerHouseListPage' }">
-                목록
-            </v-btn>
-        </v-card-actions>
-    </v-card>
+            <v-card-actions>
+                <v-btn color="secondary" :to="{ name: 'OneroomModifyPage', params: { oneroomNo: this.oneroomNo } }">
+                    수정
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn color="white" :to="{ name: 'SellerHouseListPage' }">
+                    목록
+                </v-btn>
+            </v-card-actions>
+        </v-card>
+    </div>
 </template>
 
 
@@ -44,3 +49,12 @@ export default {
 }
 </script>
 
+<style scoped>
+h1 {
+    font-size: 33px;
+    font-weight: bold;
+    width: 100%;
+    color: #000;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+</style>

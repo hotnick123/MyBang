@@ -1,7 +1,12 @@
-<template>
-  <div>
+<template> 
+    <div style="width: 600px; margin-left:auto; margin-right:auto">
+        <div class="mt-10">
+            <h1 align="left">빌라 수정</h1>
+        </div>
+      <v-card width="600" class="mx-auto mt-10" flat>
         <house-modify-form :house="villa" @submit="onSubmit"/>
-  </div>  
+      </v-card>        
+    </div> 
 </template>
 
 <script>
@@ -17,8 +22,7 @@ export default {
     },
     props: {
         villaNo: {
-            type: String,
-            required: true
+            
         }
     },
     computed: {
@@ -78,3 +82,12 @@ export default {
 </script>
 
 
+<style scoped>
+h1 {
+    font-size: 33px;
+    font-weight: bold;
+    width: 100%;
+    color: #000;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+</style>

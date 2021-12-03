@@ -28,7 +28,7 @@
 
 						<span>중개사 주소</span>
 						<div class="d-flex">
-							<v-text-field v-model="agentAddress" required solo class="mt-3"></v-text-field>
+							<v-text-field v-model="agentAddress" required solo class="mt-3" @change="changeAgentAddr"></v-text-field>
 							<v-btn v-if="!completeAgentAddr" class="mt-5 ml-3 secondary" @click="onApiAgentAddress">확인</v-btn>
 							<v-btn v-else class="mt-5 ml-3 secondary--text" @click="onApiAgentAddress" icon>
 								<v-icon>check</v-icon>
@@ -65,7 +65,7 @@
 
 						<span>매물의 주소</span>
 						<div class="d-flex">
-							<v-text-field v-model="address" required solo class="mt-3"></v-text-field>
+							<v-text-field v-model="address" required solo class="mt-3" @change="changeAddr"></v-text-field>
 							<v-btn v-if="!completeAddr" class="mt-5 ml-3 secondary" @click="onApiAddress">확인</v-btn>
 							<v-btn v-else class="mt-5 ml-3 secondary--text" @click="onApiAddress" icon>
 								<v-icon>check</v-icon>
@@ -116,7 +116,7 @@
 						</div>
 					</v-card>
 					<v-btn class="mb-5" text @click="e6 = 2">이전</v-btn>
-					<v-btn class="mb-5" color="secondary" @click="e6 = 4" >다음</v-btn>
+					<v-btn class="mb-5" color="secondary" @click="e6 = 4" :disabled="!completeAddr">다음</v-btn>
 				</v-stepper-content>
 				
 
@@ -468,7 +468,15 @@ export default {
 				this.agentLng = res.data.documents[0].x
 
 				this.completeAgentAddr = true
+			}).catch(() => {
+				alert('주소를 정확히 입력해주세요.')
 			})
+		},
+		changeAgentAddr () {
+			this.completeAgentAddr = false
+		},
+		changeAddr () {
+			this.completeAddr = false
 		},
 	},
 }
