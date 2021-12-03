@@ -20,11 +20,7 @@ export default {
   },
   mounted () {
     axios.get("http://localhost:7777/roomMate/list").then(res => {
-      console.log(res.data)
-
       this.roomMates = res.data.reverse()
-
-      console.log(this.roomMates)
 
       if (this.roomMates.length > 5) {
         this.recentRoomMates = this.roomMates.slice(0, 5)
