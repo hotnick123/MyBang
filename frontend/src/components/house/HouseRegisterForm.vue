@@ -98,7 +98,7 @@
 											<v-icon>check</v-icon>
 										</v-btn>
 									</div>
-									
+
 								</v-card-actions>
 							
 							</v-card>
@@ -405,7 +405,7 @@ export default {
 				for (let i = 0; i < this.files.length; i++) {
 					this.urls.push(URL.createObjectURL(this.files[i]))
 				}
-				
+
 				this.sendImg()
 
 			}catch(e) {
@@ -418,12 +418,12 @@ export default {
 			const formData = new FormData()
 
 			formData.set('key', 'ca442ada99076d1fda16e811a57f9d6d')
-			
+
 			this.delayImage = true
 
 			for (let i = 0; i < this.files.length; i++) {
 				formData.append('image', this.files[i])
-				
+
 				await axios.post(`https://api.imgbb.com/1/upload`, formData).then(res => {
 					console.log(res.data.data.display_url)
 					this.imageStr += res.data.data.display_url + ','
