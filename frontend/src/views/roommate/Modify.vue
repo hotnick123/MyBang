@@ -14,7 +14,7 @@
 		</div>
 
 		<br>
-		<b-button @click="onClickSaveBtn">저장</b-button>&nbsp;
+		<b-button @click="onClickSaveBtn">저장</b-button>
 		<b-button @click="onClickCancleBtn">취소</b-button>
 	</div>
 </template>

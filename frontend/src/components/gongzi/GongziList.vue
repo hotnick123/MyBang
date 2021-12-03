@@ -22,8 +22,11 @@
 					<td>{{gongzi.view}}</td>
 				</tr>
 			</tbody>
-
+		
 		</table>
+		<div class="btn_wrap">
+			<b-button v-if="auth" @click="gongziRegister" color="secondary">글쓰기</b-button>
+		</div>
 	</div>
 
 </template>
@@ -31,25 +34,37 @@
 
 <script>
 
-
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'GongziList',
 	data() {
 		return {
+			auth: null
 		}
 	},
-	props: {
-		gongzis: {
-
+	computed: {
+		...mapState(['gongzis', 'userInfo'])
+	},
+	mounted () {
+		this.fetchGongziList()
+		if (this.userInfo.authList) {
+			if (this.userInfo.authList[0].auth == '관리자') {
+				this.auth = 1
+			}
 		}
 	},
 	methods: {
+		...mapActions(['fetchGongziList']),
 		readGongzi(gongziNo) {
 			this.$router.push({ 
 				name: 'GongziReadPage',
 				query: { "gongziNo": gongziNo } }
 			)
+		},
+		gongziRegister() {
+			
+			this.$router.push({ name: 'GongziRegisterPage' })
 		}
 	}
 }
@@ -116,15 +131,11 @@ export default {
 	}
 
 	table thead tr th:nth-child(3) {
-		width: 10%;
-	}
-
-	table thead tr th:nth-child(4) {
 		width: 13%;
 	}
 
-	table thead tr th:nth-child(5) {
-		width: 7%;
+	table thead tr th:nth-child(4) {
+		width: 17%;
 	}
 
 	tbody td {
