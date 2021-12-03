@@ -8,13 +8,13 @@ import MemberLoginPage from '@/views/member/MemberLoginPage'
 import FindUserId from '@/components/member/FindUserId'
 import FindUserPw from '@/components/member/FindUserPw'
 import ModifyPassword from '@/components/member/ModifyPassword'
-import BrokerRegister from '@/views/BrokerRegister'
+import SellerRegister from '@/views/SellerRegister'
 import HostPage from '@/views/HostPage'
 import RoomMateList from '../views/roommate/List'
 import RoomMateModify from '../views/roommate/Modify'
 import RoomMateDetail from '../views/roommate/Detail'
 
-import HouseRegisterPage from '@/views/houseUpload/HouseRegisterPage'
+import HouseRegisterPage from '@/views/house/HouseRegisterPage'
 import VillaReadPage from '@/views/villa/VillaReadPage'
 import VillaModifyPage from '@/views/villa/VillaModifyPage'
 
@@ -37,7 +37,7 @@ import GongziModifyPage from '@/views/gongzi/GongziModifyPage'
 // 부동산 뉴스
 import News from '@/views/News'
 
-import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
+import SellerHouseListPage from '@/views/seller/SellerHouseListPage'
 
 import KakaoLoginPage from '@/views/KakaoLoginPage'
 
@@ -93,8 +93,8 @@ const routes = [
   },
   {
     path: '/registerInfo',
-    name: 'BrokerRegister',
-    component: BrokerRegister,
+    name: 'SellerRegister',
+    component: SellerRegister,
   },
   {
     path: '/hostPage',
@@ -195,8 +195,8 @@ const routes = [
   },
   {
     path: '/seller/list',
-    name: 'BrokerHouseListPage',
-    component: BrokerHouseListPage,
+    name: 'SellerHouseListPage',
+    component: SellerHouseListPage,
   },
   {
     path: '/officetel/read',

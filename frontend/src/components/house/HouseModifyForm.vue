@@ -3,43 +3,19 @@
         <v-stepper v-model="e1">
                 <form @submit.prevent="onSubmit">
                     <v-stepper-header>
-                    <v-stepper-step :complete="e1 > 1" step="1">매물 종류 선택</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 1" step="1">중개사무소 정보</v-stepper-step>
                     <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 2" step="2">중개사무소 정보</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 2" step="2">매물 입력사항(1)</v-stepper-step>
                     <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 3" step="3">매물 입력사항(1)</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 3" step="3">매물 입력사항(2)</v-stepper-step>
                     <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 4" step="4">매물 입력사항(2)</v-stepper-step>
-                    <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 4" step="5">매물 입력사항(3)</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 4" step="4">매물 입력사항(3)</v-stepper-step>
                      <v-divider></v-divider>
-                    <v-stepper-step step="6">매물 입력사항(4)</v-stepper-step>
+                    <v-stepper-step color="secondary" step="5">매물 입력사항(4)</v-stepper-step>
                     </v-stepper-header>
                     <v-stepper-items>
 
                         <v-stepper-content step="1">
-                            <v-card class="mb-12" color="" height="150px">
-                                    <!--
-                                    <input type="radio" value="villa" v-model="serviceType">
-                                        <label for="빌라">빌라</label>
-                                    <input type="radio" value="oneroom" v-model="serviceType">
-                                        <label for="원룸">원룸</label>
-                                    <input type="radio" value="officetel" v-model="serviceType">
-                                        <label for="오피스텔">오피스텔</label>
-                                        -->
-                                <v-col align="center">
-                                    <v-btn   value="villa" v-model="serviceType">빌라</v-btn>
-                                    <v-btn  value="officetel" v-model="serviceType">오피스텔</v-btn>
-                                    <v-btn  value="oneroom" v-model="serviceType">원룸</v-btn>
-                                    <span>{{serviceType}}</span>
-                                </v-col>
-                                    
-                            </v-card>
-                                
-                            <v-btn color="primary" @click="e1 = 2">다음</v-btn>
-                        </v-stepper-content>
-
-                        <v-stepper-content step="2">
                             <v-card class="mb-12" color="" max-height="3000px">
 
                                 <span>중개사 주소</span>
@@ -64,12 +40,11 @@
                                 <v-text-field placeholder="" v-model="agentMobile" required solo class="mt-3"></v-text-field>
                             </v-card>
 
-                            <v-btn color="primary" @click="e1 = 3">다음</v-btn>
+                            <v-btn color="secondary" @click="e1 = 2">다음</v-btn>
 
-                            <v-btn text @click="e1 = 1">이전</v-btn>
                         </v-stepper-content>
 
-                        <v-stepper-content step="3">
+                        <v-stepper-content step="2">
                             <v-card class="mb-12" color="" max-height="3000px">
 
                                 <span>매물의 주소를 입력하세요</span>
@@ -148,12 +123,12 @@
                                     </div>
                             </v-card>
                                 
-                            <v-btn color="primary" @click="e1 = 4">다음</v-btn>
+                            <v-btn color="secondary" @click="e1 = 3">다음</v-btn>
 
-                            <v-btn text @click="e1 = 2">이전</v-btn>
+                            <v-btn text @click="e1 = 1">이전</v-btn>
                         </v-stepper-content>
 
-                        <v-stepper-content step="4">
+                        <v-stepper-content step="3">
                             <v-card class="mb-12" color="" max-height="3000px">
                                 <span>크기</span>
                                     <div class="mx-1">
@@ -166,13 +141,13 @@
                                 <span>관리비 포함 항목</span>
                                     <div class="mx-1" >
                                         <input type="checkbox" value="전기세" v-model="manageCostIncChk">
-                                            <label for="전기세">전기세</label>
+                                            <label for="전기세" class="check">전기세</label>
                                         <input type="checkbox" value="수도" v-model="manageCostIncChk">
-                                            <label for="수도">수도</label>
+                                            <label for="수도" class="check">수도</label>
                                         <input type="checkbox" value="가스" v-model="manageCostIncChk">
-                                            <label for="가스">가스</label>
+                                            <label for="가스" class="check">가스</label>
                                         <input type="checkbox" value="인터넷" v-model="manageCostIncChk">
-                                            <label for="인터넷">인터넷</label>
+                                            <label for="인터넷" class="check">인터넷</label>
                                         <input type="checkbox" value="TV" v-model="manageCostIncChk">
                                             <label for="TV">TV</label>
                                     </div><br>
@@ -184,31 +159,33 @@
                                     <span>옵션</span>
                                         <div class="mx-1">
                                             <input type="checkbox" value="에어컨" v-model="optionsChk">
-                                                <label for="에어컨">에어컨</label>
+                                                <label for="에어컨" class="check">에어컨</label>
                                             <input type="checkbox" value="냉장고" v-model="optionsChk">
-                                                <label for="냉장고">냉장고</label>
+                                                <label for="냉장고" class="check">냉장고</label>
                                             <input type="checkbox" value="세탁기" v-model="optionsChk">
-                                                <label for="세탁기">세탁기</label>
+                                                <label for="세탁기" class="check">세탁기</label>
                                             <input type="checkbox" value="가스레인지" v-model="optionsChk">
-                                                <label for="가스레인지">가스레인지</label>
-                                            <input type="checkbox" value="전자레인지" v-model="optionsChk">
-                                                <label for="전자레인지">전자레인지</label>
+                                                <label for="가스레인지" class="check">가스레인지</label>
+                                            <input type="checkbox" value="인덕션" v-model="optionsChk">
+                                                <label for="인덕션" class="check">인덕션</label>
                                         </div>
                                         <div class="mx-1">
-                                            <input type="checkbox" value="인덕션" v-model="optionsChk">
-                                                <label for="인덕션">인덕션</label>
-                                            <input type="checkbox" value="싱크대" v-model="optionsChk">
-                                                <label for="싱크대">싱크대</label>
-                                            <input type="checkbox" value="책상" v-model="optionsChk">
-                                                <label for="책상">책상</label>
-                                            <input type="checkbox" value="책장" v-model="optionsChk">
-                                                <label for="책장">책장</label>
-                                            <input type="checkbox" value="침대" v-model="optionsChk">
-                                                <label for="침대">침대</label>
+                                            <input type="checkbox" value="전자레인지" v-model="optionsChk">
+                                                <label for="전자레인지" class="check">전자레인지</label>
                                             <input type="checkbox" value="옷장" v-model="optionsChk">
-                                                <label for="옷장">옷장</label>
+                                                <label for="옷장" class="check">옷장</label>
+                                            <input type="checkbox" value="책상" v-model="optionsChk">
+                                                <label for="책상" class="check">책상</label>
+                                            <input type="checkbox" value="책장" v-model="optionsChk">
+                                                <label for="책장" class="check">책장</label>
+                                            <input type="checkbox" value="침대" v-model="optionsChk">
+                                                <label for="침대" class="check">침대</label>
+                                        </div>
+                                        <div class="mx-1">
+                                            <input type="checkbox" value="싱크대" v-model="optionsChk">
+                                                <label for="싱크대" class="check">싱크대</label>
                                             <input type="checkbox" value="신발장" v-model="optionsChk">
-                                                <label for="신발장">신발장</label>
+                                                <label for="신발장" >신발장</label>
                                         </div> 
                                 
                                     <span>반려동물</span>
@@ -222,12 +199,12 @@
                                         </div>  
                             </v-card>
                                 
-                            <v-btn color="primary" @click="e1 = 5">다음</v-btn>
+                            <v-btn color="secondary" @click="e1 = 4">다음</v-btn>
 
-                            <v-btn text @click="e1 = 3">이전</v-btn>
+                            <v-btn text @click="e1 = 2">이전</v-btn>
                         </v-stepper-content>
 
-                        <v-stepper-content step="5">
+                        <v-stepper-content step="4">
                             <v-card class="mb-12" color="" max-height="2000px">
 
                                 <span>인근 지하철</span>
@@ -254,12 +231,12 @@
                                     </div> 
                             </v-card>
 
-                            <v-btn color="primary" @click="e1 = 6">다음</v-btn>
+                            <v-btn color="secondary" @click="e1 = 5">다음</v-btn>
 
-                            <v-btn text @click="e1 = 4">이전</v-btn>
+                            <v-btn text @click="e1 = 3">이전</v-btn>
                         </v-stepper-content>
 
-                        <v-stepper-content step="6">
+                        <v-stepper-content step="5">
                             <v-card class="mb-12" color="" max-height="3000px"> 
 
                                 <span>소개글</span>
@@ -272,48 +249,51 @@
                                         <v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required solo class="mt-3"></v-textarea>
                                     </div> 
                             </v-card>
-                            <v-btn text @click="e1 = 5">이전</v-btn>
+                            <v-btn text @click="e1 = 4">이전</v-btn>
                         </v-stepper-content>
                     
+
                     <!-- 자동으로 입력되는 부분 --> 
                     <div class="mx-3" hidden> 
                         <v-icon color="black" size="30px">label</v-icon>
                         중개사무소 좌표
                         <div class="mx-1">
-                            <v-text-field placeholder="" v-model="agentLat" required solo class="mt-3" readonly></v-text-field>
+                            <v-text-field placeholder="" v-model="agentLat" required readonly></v-text-field>
                         </div> 
                     </div>
                     <div class="mx-3" hidden> 
                         <v-icon color="black" size="30px">label</v-icon>
                         중개사무소 좌표
                         <div class="mx-1">
-                            <v-text-field placeholder="" v-model="agentLng" required solo class="mt-3" readonly></v-text-field>
+                            <v-text-field placeholder="" v-model="agentLng" required readonly></v-text-field>
                         </div> 
                     </div>
                     <div class="mx-3" hidden> 
                         <v-icon color="black" size="30px">label</v-icon>
                         좌표(lat)
                         <div class="mx-1">
-                            <v-text-field placeholder="좌표(lat)" v-model="lat" required solo class="mt-3" readonly></v-text-field>
+                            <v-text-field placeholder="좌표(lat)" v-model="lat" required readonly></v-text-field>
                         </div> 
                     </div>
                     <div class="mx-3" hidden> 
                         <v-icon color="black" size="30px">label</v-icon>
                         좌표(lng)
                         <div class="mx-1">
-                            <v-text-field placeholder="좌표(lng)" v-model="lng" required solo class="mt-3" readonly></v-text-field>
+                            <v-text-field placeholder="좌표(lng)" v-model="lng" required readonly></v-text-field>
                         </div> 
                     </div>
                     <div class="mx-3" hidden> 
                         <v-icon color="black" size="30px">label</v-icon>
                         작성자
                         <div class="mx-1">
-                            <v-text-field placeholder="" v-model="agentId" required solo class="mt-3" readonly></v-text-field>
+                            <v-text-field placeholder="" v-model="agentId" required readonly></v-text-field>
                         </div> 
                     </div>
 
                     <div class="mt-3">
-                        <v-btn class="upload-button" color="white" tile large button type="submit">방 등록하기</v-btn>
+                        <v-btn class="button_place" color="secondary" tile large button type="submit">수정완료</v-btn>
+                        <v-btn class="button_place" color="white" @click="onDelete">삭제</v-btn> 
+                        <v-btn class="button_place" color="white" :to="{ name: 'BrokerHouseListPage' }">목록으로 돌아가기</v-btn>
                     </div>
                 </v-stepper-items>
             </form>
@@ -322,12 +302,17 @@
 </template>
 
 <script>
-
 import axios from 'axios'
 import { mapState } from 'vuex'
 
 export default {
-    name: 'HouseRegisterForm',
+    name: 'HouseModifyForm',
+    props: {
+        house: {
+            type: Object,
+            required: true
+        }
+    },
     data () {
       return {
             e1: 1,
@@ -393,7 +378,7 @@ export default {
         ...mapState(['userInfo']),
         sizeM2 () {
             return this.size * 3.305785
-        }  
+        }
     },
     mounted() {
         this.agentId = this.userInfo.userId
@@ -445,20 +430,54 @@ export default {
             alert('사진등록이 완료되었습니다')
         },
         onSubmit () {
+            this.agentId = this.userInfo.userId 
             const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId} = this
+            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = this
 
             this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId})
+            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
+        },
+        onDelete () {
+            if (this.serviceType == '빌라') {
+                const { villaNo } = this.house
+                axios.delete(`http://localhost:7777/villa/${villaNo}`)
+                    .then(() => {
+                        alert("등록하신 매물이 삭제되었습니다")
+                        this.$router.push({name: 'BrokerHouseListPage' })
+                    })
+                    .catch(err => {
+                        alert(err.response.data.message)
+                    })
+            } else if (this.serviceType == '원룸') {
+                const { oneroomNo } = this.house
+                axios.delete(`http://localhost:7777/oneroom/${oneroomNo}`)
+                    .then(() => {
+                        alert("등록하신 매물이 삭제되었습니다")
+                        this.$router.push({name: 'BrokerHouseListPage' })
+                    })
+                    .catch(err => {
+                        alert(err.response.data.message)
+                    })
+            } else {
+                const { officetelNo } = this.house
+                axios.delete(`http://localhost:7777/officetel/${officetelNo}`)
+                    .then(() => {
+                        alert("등록하신 매물이 삭제되었습니다")
+                        this.$router.push({name: 'BrokerHouseListPage' })
+                    })
+                    .catch(err => {
+                        alert(err.response.data.message)
+                    })
+            }
+            
         },
         onApiAddress () {
             axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,
             { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
                 alert("입력성공")
                 console.log(res.data)
-            this.agentId = this.userInfo.userId 
             this.lat = res.data.documents[0].y
             this.lng = res.data.documents[0].x
             this.local1 = res.data.documents[0].road_address.region_1depth_name
@@ -471,17 +490,66 @@ export default {
             { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
                 alert("입력성공")
                 console.log(res.data)
-                this.agentLat = res.data.documents[0].y
-                this.agentLng = res.data.documents[0].x
+                this.agentLat += res.data.documents[0].y
+                this.agentLng += res.data.documents[0].x
             })
         },
+    },
+    created () {
+        this.address = this.house.address
+        this.agentAddress = this.house.agentAddress
+        this.agentEmail = this.house.agentEmail
+        this.agentLat = this.house.agentLat
+        this.agentLng = this.house.agentLng
+        this.agentMobile = this.house.agentMobile
+        this.agentName = this.house.agentName
+        this.agentPhone = this.house.agentPhone
+        this.buildingType = this.house.buildingType
+        this.deposit = this.house.deposit
+        this.description = this.house.description
+        this.elevator = this.house.elevator
+        this.floor = this.house.floor
+        this.floorAll = this.house.floorAll
+        this.image = this.house.image
+        this.lat = this.house.lat
+        this.lng = this.house.lng
+        this.local1 = this.house.local1
+        this.local2 = this.house.local2
+        this.local3 = this.house.local3
+        this.manageCost = this.house.manageCost
+        this.manageCostInc = this.house.manageCostInc
+        this.moveinDate = this.house.moveinDate
+        this.nearSubways = this.house.nearSubways
+        this.options = this.house.options
+        this.parking = this.house.parking
+        this.pets = this.house.pets
+        this.roomDirection = this.house.roomDirection
+        this.roomType = this.house.roomType
+        this.salesType = this.house.salesType
+        this.serviceType = this.house.serviceType
+        this.size = this.house.size
+        this.sizeM2 = this.house.sizeM2
+        this.title = this.house.title
+        this.updatedAt = this.house.updatedAt
+        this.userIntro = this.house.userIntro
+        this.userName = this.house.userName
+        this.url = this.house.url
+        this.agentId = this.house.agentId
+        this.rent = this.house.rent
     },
 }
 </script>
 
 <style scoped>
 
-.upload-button {
-    right: 100px;
+.button_place {
+    left: 68%;
+    margin-right: 1%;
+    margin-top: -8%;
+    /*margin-left: 135px;*/ 
+}
+.check {
+    width: 93px;
+    margin-right: 20px;
 }
 </style>

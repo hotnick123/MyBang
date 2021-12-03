@@ -67,7 +67,6 @@ import { mapActions, mapState } from 'vuex'
       return {
         userId: null,
 				auth: null,
-				menu: false
     }
   },
   computed: {
@@ -80,13 +79,11 @@ import { mapActions, mapState } from 'vuex'
 			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
 		}
 		setTimeout(() => {
-			if (this.userInfo.authList.length != 0) {
+			if (this.userInfo.length != 0) {
 				this.auth = this.userInfo.authList[0].auth
-				console.log(this.auth)
 			} else {
 				this.auth = null
 			}
-			
 		}, 500)
   },
   methods: {
@@ -107,12 +104,12 @@ import { mapActions, mapState } from 'vuex'
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
     },
-	Gomain () {
-		this.$router.push({ name: 'Home' })
-	},
-	goSellerList () {
-		this.$router.push({ name: 'BrokerHouseListPage' })
-	}
+		Gomain () {
+			this.$router.push({ name: 'Home' })
+		},
+		goSellerList () {
+			this.$router.push({ name: 'SellerHouseListPage' })
+		}
   }
 }
 </script>
@@ -195,7 +192,7 @@ import { mapActions, mapState } from 'vuex'
 	}
 
 	.navbar > li > a >span:hover{
-		background:white; color: blue;
+		background:white; color: #98BAE7;
 	}
 
 	.right-header .loginUser {

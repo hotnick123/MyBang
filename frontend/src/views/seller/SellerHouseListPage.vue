@@ -1,19 +1,18 @@
 <template>
     <div>
-        <h1>내가 올린 부동산</h1>
-        <broker-house-list-form :agentVilla="agentVilla" :agentOneroom="agentOneroom" :agentOfficetel="agentOfficetel"/>
+        <seller-house-list-form :agentVilla="agentVilla" :agentOneroom="agentOneroom" :agentOfficetel="agentOfficetel"/>
     </div>
 </template>
 
 <script>
 
-import BrokerHouseListForm from '@/components/broker/BrokerHouseListForm.vue'
+import SellerHouseListForm from '@/components/seller/SellerHouseListForm.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-    name: 'BrokerHouseListPage',
+    name: 'SellerHouseListPage',
     components: { 
-        BrokerHouseListForm 
+        SellerHouseListForm 
     },
     data () {
         return {

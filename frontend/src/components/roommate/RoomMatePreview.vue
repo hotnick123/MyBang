@@ -1,8 +1,8 @@
 <template>
   <div>
     <ul>
-			<li v-for="list in recentGongzis" :key="list.index"
-        @click="gongziRead(list.gongziNo)">{{list.title}}</li>
+			<li v-for="list in recentRoomMates" :key="list.index"
+        @click="roomMateRead(list.id)">{{list.title}} [{{list.count}}]</li>
     </ul>
   </div>
 </template>
@@ -14,29 +14,24 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      gongzis: [],
-      recentGongzis: []
+      roomMates: [],
+      recentRoomMates: []
     }
   },
-  computed: {
-
-  },
   mounted () {
-    axios.get("http://localhost:7777/gongzi/list").then(res => {
-      this.gongzis = res.data
+    axios.get("http://localhost:7777/roomMate/list").then(res => {
+      this.roomMates = res.data.reverse()
 
-      if (this.gongzis.length > 5) {
-        this.recentGongzis = this.gongzis.slice(0, 5)
+      if (this.roomMates.length > 5) {
+        this.recentRoomMates = this.roomMates.slice(0, 5)
       } else {
-        this.recentGongzis = this.gongzis
+        this.recentRoomMates = this.roomMates
       }
     })
   },
   methods: {
-    gongziRead (gongziNo) {
-      this.$router.push(
-				{ name: 'GongziReadPage', query: { gongziNo: gongziNo } }
-			)
+    roomMateRead (id) {
+      this.$router.push({ name: 'RoomMateDetail', params: { id: id } })
     }
   }
 }

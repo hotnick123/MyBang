@@ -1,19 +1,19 @@
 <template>
   <div>
-        <oneroom-modify-form :oneroom="oneroom" @submit="onSubmit"/>
+        <house-modify-form :house="oneroom" @submit="onSubmit"/>
   </div>  
 </template>
 
 <script>
 
-import OneroomModifyForm from '@/components/oneroom/OneroomModifyForm.vue'
+import HouseModifyForm from '@/components/house/HouseModifyForm'
 import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'OneroomModifyPage',
     components: {
-        OneroomModifyForm
+        HouseModifyForm
     },
     props: {
         oneroomNo: {

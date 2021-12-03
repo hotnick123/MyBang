@@ -1,19 +1,19 @@
 <template>
   <div>
-    <officetel-modify-form :officetel="officetel" @submit="onSubmit"/>
+    <house-modify-form :house="officetel" @submit="onSubmit"/>
   </div>  
 </template>
 
 <script>
 
-import OfficetelModifyForm from '@/components/officetel/OfficetelModifyForm.vue'
+import HouseModifyForm from '@/components/house/HouseModifyForm'
 import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'OfficetelModifyPage',
     components: {
-        OfficetelModifyForm
+        HouseModifyForm
     },
     props: {
         officetelNo: {

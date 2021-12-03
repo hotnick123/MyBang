@@ -1,7 +1,7 @@
 <template>
   <div>
       <div>
-        <h2>매물 등록</h2>
+        <h1>매물 등록</h1>
       </div>
         <house-register-form @submit="onSubmit"/>
   </div>  
@@ -9,7 +9,7 @@
 
 <script>
 
-import HouseRegisterForm from '@/components/houseUpload/HouseRegisterForm.vue'
+import HouseRegisterForm from '@/components/house/HouseRegisterForm'
 import axios from 'axios'
 
 export default {
@@ -88,8 +88,16 @@ export default {
   margin: 0 auto;
 }
 
-h2 {
-  text-align: center;
-  
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+h1 {
+    font-family: 'GowunDodum-Regular';
+    font-size: 30px;
+    text-align: center;
+    padding: 5% 0% 5% 0%;
 }
 </style>

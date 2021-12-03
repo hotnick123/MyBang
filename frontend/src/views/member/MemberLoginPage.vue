@@ -1,14 +1,9 @@
 <template>
     <div>
         <div align="center">
-            <h2>로그인</h2>
+            <h1>로그인</h1>
         </div>
         <member-login-form @submit="onSubmit"/>
-        <v-spacer></v-spacer>
-       
-    
-        <v-btn @click="findUserId" text>아이디 찾기</v-btn>
-        <v-btn @click="findUserPw" text>비밀번호 찾기</v-btn>
     </div>
 </template>
 
@@ -76,13 +71,19 @@ export default {
             alert('이미 로그인 되어 있습니다: ' + this.$store.state.session.userId)
             }
         },
-        findUserId () {
-            this.$router.push({ name: 'FindUserId' })
-        },
-        findUserPw () {
-            this.$router.push({ name: 'FindUserPw' })
-        },
+        
         
     }
 }
 </script>
+
+
+<style scoped>
+h1 {
+    font-size: 33px;
+    font-weight: bold;
+    width: 100%;
+    color: #000;
+    margin-top: 50px;
+}
+</style>

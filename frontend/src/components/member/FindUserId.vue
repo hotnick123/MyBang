@@ -1,12 +1,14 @@
 <template>
   <v-container>
-    <v-card class="pa-5">
-      <v-card-title>아이디 찾기</v-card-title>
-      <v-card-text>가입한 이메일을 입력하세요.</v-card-text>
-      <v-text-field label="email" v-model="email" :rules="emailRules"></v-text-field>
+    <h1 align="center">아이디 찾기</h1>
+    <v-card class="pa-10 mx-auto mt-7 mb-15" width="500">
+      <h5 class="mb-10">가입한 이메일을 입력하세요.</h5>
+      <span>이메일</span>
+      <v-text-field v-model="email" :rules="emailRules"
+         class="mt-3" solo></v-text-field>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="findId" @keydown.enter="findId">찾기</v-btn>
+        <v-btn @click="findId" class="secondary">찾기</v-btn>
       </v-card-actions>
     </v-card>    
   </v-container>
@@ -46,3 +48,15 @@ export default {
   }
 }
 </script>
+
+
+
+<style scoped>
+h1 {
+  font-size: 33px;
+  font-weight: bold;
+  width: 100%;
+  color: #000;
+  margin-top: 50px;
+}
+</style>
