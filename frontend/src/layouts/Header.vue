@@ -108,7 +108,7 @@ import { mapActions, mapState } from 'vuex'
 			this.$router.push({ name: 'Home' })
 		},
 		goSellerList () {
-			this.$router.push({ name: 'BrokerHouseListPage' })
+			this.$router.push({ name: 'SellerHouseListPage' })
 		}
   }
 }

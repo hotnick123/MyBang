@@ -38,7 +38,7 @@
 
 <script>
 export default {
-    name: 'BrokerRegister',
+    name: 'SellerRegister',
     data() {
       return {
 		  	/*
