@@ -1,7 +1,5 @@
 <template>
 	<v-container>
-		<h2>공지사항</h2>
-		<v-btn v-if="auth" @click="gongziRegister" outlined class="float-right">글쓰기</v-btn>
 		<gongzi-list :gongzis="gongzis"/>
 	</v-container>
 </template>
