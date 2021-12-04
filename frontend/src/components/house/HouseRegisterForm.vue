@@ -28,7 +28,7 @@
 
 						<span>중개사 주소</span>
 						<div class="d-flex">
-							<v-text-field v-model="agentAddress" required solo class="mt-3"></v-text-field>
+							<v-text-field v-model="agentAddress" required solo class="mt-3" @change="changeAgentAddr"></v-text-field>
 							<v-btn v-if="!completeAgentAddr" class="mt-5 ml-3 secondary" @click="onApiAgentAddress">확인</v-btn>
 							<v-btn v-else class="mt-5 ml-3 secondary--text" @click="onApiAgentAddress" icon>
 								<v-icon>check</v-icon>
@@ -65,7 +65,7 @@
 
 						<span>매물의 주소</span>
 						<div class="d-flex">
-							<v-text-field v-model="address" required solo class="mt-3"></v-text-field>
+							<v-text-field v-model="address" required solo class="mt-3" @change="changeAddr"></v-text-field>
 							<v-btn v-if="!completeAddr" class="mt-5 ml-3 secondary" @click="onApiAddress">확인</v-btn>
 							<v-btn v-else class="mt-5 ml-3 secondary--text" @click="onApiAddress" icon>
 								<v-icon>check</v-icon>
@@ -79,45 +79,45 @@
 							<v-text-field v-model="local3" required solo class="mt-3" readonly></v-text-field>
 						</div>
 
-							<span>입주가능일</span>
-								<div class="mx-1">
-									<v-menu ref="menu" v-model="menu" :return-value.sync="date" 
-										transition="scale-transition" offset-y min-width="auto">
-										<template v-slot:activator="{ on }">
-											<v-text-field  v-model="moveinDate" v-on="on" 
-												append-icon="mdi-calendar" required solo class="mt-3"></v-text-field>
-										</template>
-										<v-date-picker color="secondary" v-model="moveinDate" no-title scrollable>
-											<v-btn text @click="menu = false">Cancel</v-btn>
-											<v-spacer></v-spacer>
-											<v-btn text @click="$refs.menu.save(date)">OK</v-btn>
-										</v-date-picker>
-									</v-menu>
-								</div> 
+						<span>입주가능일</span>
+						<div class="mx-1">
+							<v-menu ref="menu" v-model="menu" :return-value.sync="date" 
+								transition="scale-transition" offset-y min-width="auto">
+								<template v-slot:activator="{ on }">
+									<v-text-field  v-model="moveinDate" v-on="on" 
+										append-icon="mdi-calendar" required solo class="mt-3"></v-text-field>
+								</template>
+								<v-date-picker color="secondary" v-model="moveinDate" no-title scrollable>
+									<v-btn text @click="menu = false">Cancel</v-btn>
+									<v-spacer></v-spacer>
+									<v-btn text @click="$refs.menu.save(date)">OK</v-btn>
+								</v-date-picker>
+							</v-menu>
+						</div> 
 
-							<span>방구조</span>
-							<div class="mx-1">
-								<v-select :items='roomTypes' v-model="roomType" required solo class="mt-3" ></v-select>
-							</div> 
+						<span>방구조</span>
+						<div class="mx-1">
+							<v-select :items='roomTypes' v-model="roomType" required solo class="mt-3" ></v-select>
+						</div> 
 
-							<span>판매유형</span>
-							<div class="mx-1">
-								<v-select :items='salesTypes' v-model="salesType" required solo class="mt-3" ></v-select>
-							</div> 
+						<span>판매유형</span>
+						<div class="mx-1">
+							<v-select :items='salesTypes' v-model="salesType" required solo class="mt-3" ></v-select>
+						</div> 
 
-							<span>보증금</span>
-							<div class="mx-1">
-								<v-text-field input type="number" v-model="deposit" required solo class="mt-3"></v-text-field>
-							</div>
+						<span>보증금</span>
+						<div class="mx-1">
+							<v-text-field input type="number" v-model="deposit" required solo class="mt-3"></v-text-field>
+						</div>
 
-							<span>월세</span>
-							<div class="mx-1">
-								<v-text-field input type="number" v-model="rent" required solo class="mt-3"></v-text-field>
-							</div>
-						</v-card>
-						<v-btn class="mb-5" text @click="e6 = 2">이전</v-btn>
-						<v-btn class="mb-5" color="secondary" @click="e6 = 4" :disabled="!completeAddr && !completeImage">다음</v-btn>
-					</v-stepper-content>
+						<span>월세</span>
+						<div class="mx-1">
+							<v-text-field input type="number" v-model="rent" required solo class="mt-3"></v-text-field>
+						</div>
+					</v-card>
+					<v-btn class="mb-5" text @click="e6 = 2">이전</v-btn>
+					<v-btn class="mb-5" color="secondary" @click="e6 = 4" :disabled="!completeAddr">다음</v-btn>
+				</v-stepper-content>
 				
 
 				<v-stepper-step color="secondary" :complete="e6 > 4" step="4">
@@ -234,7 +234,30 @@
 					<v-card class="mb-5 pa-5" width="500" flat> 
 
 						<span>소개글</span>
-						<v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" v-model="title" required solo class="mt-3"></v-text-field>
+						<v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" 
+							v-model="title" required solo class="mt-3"></v-text-field>
+
+						<span>건물사진 등록 (없으면 그냥 확인버튼)</span>
+						<v-card flat>
+							
+							<v-file-input class="mt-3" v-model="files" @change="selectImg" label="사진 선택 후 확인버튼을 눌러주세요."
+							chips multiple required solo ></v-file-input>
+
+							<v-card class="mx-10" flat>
+								<v-img v-for="url in urls" :key="url.index" class="ml-10" :src="url" width="50%"/>
+							</v-card>
+
+							<v-card-actions>
+								<v-spacer></v-spacer>
+								<v-progress-circular v-if="delayImage" indeterminate color="secondary"></v-progress-circular>
+								<div v-else>
+									<v-btn v-if="!completeImage" @click="checkImage" class="mt-5 ml-3 secondary">확인</v-btn>
+									<v-btn v-else class="mt-5 ml-3 secondary--text" icon>
+										<v-icon>check</v-icon>
+									</v-btn>
+								</div>
+							</v-card-actions>
+						</v-card>
 
 						<span>건물사진 등록</span>
 							<v-card flat>
@@ -261,11 +284,12 @@
 							</v-card>
 
 						<span>매물 상세설명</span>
-						<v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required solo class="mt-3"></v-textarea>
+						<v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" 
+							v-model="description" required solo class="mt-3"></v-textarea>
 					</v-card>
 
 					<v-btn class="mb-5" text @click="e6 = 5">이전</v-btn>
-					<v-btn class="mb-5" color="secondary" type="submit" @click="onSubmit">등록</v-btn>
+					<v-btn class="mb-5" color="secondary" type="submit" @click="onSubmit" :disabled="!completeImage">등록</v-btn>
 
 				</v-stepper-content>
 					
@@ -468,7 +492,15 @@ export default {
 				this.agentLng = res.data.documents[0].x
 
 				this.completeAgentAddr = true
+			}).catch(() => {
+				alert('주소를 정확히 입력해주세요.')
 			})
+		},
+		changeAgentAddr () {
+			this.completeAgentAddr = false
+		},
+		changeAddr () {
+			this.completeAddr = false
 		},
 	},
 }
