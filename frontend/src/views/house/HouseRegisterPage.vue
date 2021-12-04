@@ -72,7 +72,7 @@ export default {
                         console.log(res)
                         alert('저장 성공! ')
                         this.$router.push({
-                            name: 'BrokerHouseListPage',
+                            name: 'SellerHouseListPage',
                         })
                     })
                     .catch(res => {

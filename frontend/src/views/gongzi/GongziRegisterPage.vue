@@ -1,6 +1,5 @@
 <template>
 	<v-container>
-		<h2 align="center">공지사항 작성</h2>
 		<gongzi-register-form @submit="onSubmit"/>
 	</v-container>
 </template>

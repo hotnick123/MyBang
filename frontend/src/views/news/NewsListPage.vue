@@ -1,7 +1,7 @@
 <template>
 
 	<div class="list_wrap">
-		<h1>공지사항</h1>
+		<h1>뉴스</h1>
 
 		<table class="table table-hover">
 
@@ -9,32 +9,28 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
-					<th>작성일자</th>
-					<th>조회수</th>
 				</tr>
 			</thead>
 
+      <!--
 			<tbody>
-				<tr v-for="(gongzi, index) in gongzis" :key="index">
-					<td>{{gongzi.gongziNo}}</td>
-					<td><a @click="readGongzi(gongzi.gongziNo)">{{gongzi.title}}</a></td>
-					<td>{{gongzi.createdDate}}</td>
-					<td>{{gongzi.view}}</td>
-				</tr>
+				<tr v-for="(list,idx) in lists.slice(0,10)" :key="idx" width="50px">
+            <div v-show="(idx<11)">
+              <td style="color: gray" width="40px">{{ list.newsNo }}</td>
+              <td @click="clickNews(list.address)" class="maxlength">{{ list.title }}</td>
+            </div>
+          </tr>
 			</tbody>
+      -->
+      
 		
 		</table>
-		<div class="btn_wrap">
-			<b-button v-if="auth" @click="gongziRegister" color="secondary">글쓰기</b-button>
-		</div>
 	</div>
-
 </template>
-
 
 <script>
 
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'GongziList',
@@ -44,28 +40,16 @@ export default {
 		}
 	},
 	computed: {
-		...mapState(['gongzis', 'userInfo'])
+		...mapState({
+        lists: state => state.lists
+      })
 	},
 	mounted () {
-		this.fetchGongziList()
-		if (this.userInfo.authList) {
-			if (this.userInfo.authList[0].auth == '관리자') {
-				this.auth = 1
-			}
-		}
 	},
 	methods: {
-		...mapActions(['fetchGongziList']),
-		readGongzi(gongziNo) {
-			this.$router.push({ 
-				name: 'GongziReadPage',
-				query: { "gongziNo": gongziNo } }
-			)
-		},
-		gongziRegister() {
-			
-			this.$router.push({ name: 'GongziRegisterPage' })
-		}
+		clickNews(address) {
+      window.open(address, 'newslink', 'width: 200px, height: 200px')
+    },
 	}
 }
 </script>
@@ -123,19 +107,11 @@ export default {
 	}
 
 	table thead tr th:nth-child(1) {
-		width: 7%;
+		width: 10%;
 	}
 
 	table thead tr th:nth-child(2) {
-		width: 63%;
-	}
-
-	table thead tr th:nth-child(3) {
-		width: 13%;
-	}
-
-	table thead tr th:nth-child(4) {
-		width: 17%;
+		width: 90%;
 	}
 
 	tbody td {
