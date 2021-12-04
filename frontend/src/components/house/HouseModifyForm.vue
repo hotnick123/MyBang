@@ -97,7 +97,7 @@
 								<v-text-field input type="number" v-model="rent" required solo class="mt-3"></v-text-field>
 							</div>
 						</v-card>
-						<v-btn class="mb-5" text @click="e5 = 2">이전</v-btn>
+						<v-btn class="mb-5" text @click="e5 = 1">이전</v-btn>
 						<v-btn class="mb-5" color="secondary" @click="e5 = 3" >다음</v-btn>
 					</v-stepper-content>
 				

@@ -35,7 +35,8 @@ import GongziReadPage from '@/views/gongzi/GongziReadPage.vue'
 import GongziModifyPage from '@/views/gongzi/GongziModifyPage'
 
 // 부동산 뉴스
-import News from '@/views/News'
+import News from '@/views/news/News'
+import NewsListPage from '@/views/news/NewsListPage'
 
 import SellerHouseListPage from '@/views/seller/SellerHouseListPage'
 
@@ -253,6 +254,11 @@ const routes = [
     components: {
       default: KakaoLoginPage
     }
+  },
+  {
+    path: '/news/list',
+    name: 'NewsListPage',
+    component: NewsListPage,
   },
  
 ]

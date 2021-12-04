@@ -35,11 +35,11 @@
 			<article>
 				<div class="more_btn">
 					<h2>뉴스</h2>
-					<v-btn depressed>
+					<v-btn @click="newsList" depressed>
 						더보기
 					</v-btn>
-
 				</div>
+			<!--
 				<hr>
 				<div class="tablemargin">
 					<v-card elevation="0">
@@ -65,6 +65,14 @@
 						</ul>
 					</v-card>
 				</div>
+				-->
+				<hr>
+					<div>
+						<ul>
+							<li v-for="(list,idx) in lists.slice(0,5)" :key="idx" v-show="(idx<5)"
+									@click="clickNews(list.address)">{{ list.title }}</li>
+						</ul>
+					</div>
 			</article>
 
 			<article>
@@ -249,6 +257,9 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 			},
 			roomMateList () {
 				this.$router.push({ name: 'RoomMateList' })
+			},
+			newsList () {
+				this.$router.push({name: 'NewsListPage'})
 			}
     },
 
@@ -440,8 +451,8 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 
 	.board_content article {
 		float: left;
-		width: calc(80% / 2);
-		margin-right: 20%;
+		width: calc(59% / 3);
+		margin-left: 10%;
 	}
 
 	.board_content article:nth-child(2) {
@@ -530,7 +541,7 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 	}
 
 	.store .title_bg p {
-
+		font-weight: '';
 	}
 
 	.store .title_bg .v-btn {
