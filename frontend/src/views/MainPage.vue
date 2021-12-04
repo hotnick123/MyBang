@@ -451,8 +451,8 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 
 	.board_content article {
 		float: left;
-		width: calc(59% / 3);
-		margin-left: 10%;
+		width: calc(85% / 3);
+		margin-left: 3%;
 	}
 
 	.board_content article:nth-child(2) {
