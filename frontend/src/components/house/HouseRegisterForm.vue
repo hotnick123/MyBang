@@ -79,30 +79,6 @@
 							<v-text-field v-model="local3" required solo class="mt-3" readonly></v-text-field>
 						</div>
 
-						<span>건물사진 등록</span>
-							<v-card flat>
-								
-								<v-file-input class="mt-3" v-model="files" @change="selectImg" label="사진 선택"
-								chips multiple required solo ></v-file-input>
-
-								<v-card class="mx-10" flat>
-									<v-img v-for="url in urls" :key="url.index" class="ml-10" :src="url" width="50%"/>
-								</v-card>
-
-								<v-card-actions>
-									<v-spacer></v-spacer>
-									<v-progress-circular v-if="delayImage" indeterminate color="secondary"></v-progress-circular>
-									<div v-else>
-										<v-btn v-if="!completeImage" @click="checkImage" class="mt-5 ml-3 secondary">확인</v-btn>
-										<v-btn v-else class="mt-5 ml-3 secondary--text" icon>
-											<v-icon>check</v-icon>
-										</v-btn>
-									</div>
-
-								</v-card-actions>
-							
-							</v-card>
-
 							<span>입주가능일</span>
 								<div class="mx-1">
 									<v-menu ref="menu" v-model="menu" :return-value.sync="date" 
@@ -259,6 +235,30 @@
 
 						<span>소개글</span>
 						<v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" v-model="title" required solo class="mt-3"></v-text-field>
+
+						<span>건물사진 등록</span>
+							<v-card flat>
+								
+								<v-file-input class="mt-3" v-model="files" @change="selectImg" label="사진 선택"
+								chips multiple required solo ></v-file-input>
+
+								<v-card class="mx-10" flat>
+									<v-img v-for="url in urls" :key="url.index" class="ml-10" :src="url" width="50%"/>
+								</v-card>
+
+								<v-card-actions>
+									<v-spacer></v-spacer>
+									<v-progress-circular v-if="delayImage" indeterminate color="secondary"></v-progress-circular>
+									<div v-else>
+										<v-btn v-if="!completeImage" @click="checkImage" class="mt-5 ml-3 secondary">확인</v-btn>
+										<v-btn v-else class="mt-5 ml-3 secondary--text" icon>
+											<v-icon>check</v-icon>
+										</v-btn>
+									</div>
+
+								</v-card-actions>
+							
+							</v-card>
 
 						<span>매물 상세설명</span>
 						<v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required solo class="mt-3"></v-textarea>
