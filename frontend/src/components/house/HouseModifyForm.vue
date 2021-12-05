@@ -467,82 +467,82 @@ export default {
 
 			this.completeImage = true
 		},
-        onSubmit () {
-            this.agentId = this.userInfo.userId 
-            const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
-            description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = this
+		onSubmit () {
+				this.agentId = this.userInfo.userId 
+				const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
+				description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
+				lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = this
 
-            this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
-            description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
-        },
-        onDelete () {
-            if (this.serviceType == '빌라') {
-                const { villaNo } = this.house
-                axios.delete(`http://localhost:7777/villa/${villaNo}`)
-                    .then(() => {
-                        alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'SellerHouseListPage' })
-                    })
-                    .catch(err => {
-                        alert(err.response.data.message)
-                    })
-            } else if (this.serviceType == '원룸') {
-                const { oneroomNo } = this.house
-                axios.delete(`http://localhost:7777/oneroom/${oneroomNo}`)
-                    .then(() => {
-                        alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'SellerHouseListPage' })
-                    })
-                    .catch(err => {
-                        alert(err.response.data.message)
-                    })
-            } else {
-                const { officetelNo } = this.house
-                axios.delete(`http://localhost:7777/officetel/${officetelNo}`)
-                    .then(() => {
-                        alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'SellerHouseListPage' })
-                    })
-                    .catch(err => {
-                        alert(err.response.data.message)
-                    })
-            }
-            
-        },
-        onApiAddress () {
-            axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,
-            { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-                alert("입력성공")
-                console.log(res.data)
-            this.lat = res.data.documents[0].y
-            this.lng = res.data.documents[0].x
-            this.local1 = res.data.documents[0].road_address.region_1depth_name
-            this.local2 = res.data.documents[0].road_address.region_2depth_name
-            this.local3 = res.data.documents[0].road_address.region_3depth_name
+				this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
+				description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
+				lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
+		},
+		onDelete () {
+			if (this.serviceType == '빌라') {
+					const { villaNo } = this.house
+					axios.delete(`http://localhost:7777/villa/${villaNo}`)
+							.then(() => {
+									alert("등록하신 매물이 삭제되었습니다")
+									this.$router.push({name: 'SellerHouseListPage' })
+							})
+							.catch(err => {
+									alert(err.response.data.message)
+							})
+			} else if (this.serviceType == '원룸') {
+					const { oneroomNo } = this.house
+					axios.delete(`http://localhost:7777/oneroom/${oneroomNo}`)
+							.then(() => {
+									alert("등록하신 매물이 삭제되었습니다")
+									this.$router.push({name: 'SellerHouseListPage' })
+							})
+							.catch(err => {
+									alert(err.response.data.message)
+							})
+			} else {
+					const { officetelNo } = this.house
+					axios.delete(`http://localhost:7777/officetel/${officetelNo}`)
+							.then(() => {
+									alert("등록하신 매물이 삭제되었습니다")
+									this.$router.push({name: 'SellerHouseListPage' })
+							})
+							.catch(err => {
+									alert(err.response.data.message)
+							})
+			}
+				
+		},
+		onApiAddress () {
+				axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,
+				{ headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
+						alert("입력성공")
+						console.log(res.data)
+				this.lat = res.data.documents[0].y
+				this.lng = res.data.documents[0].x
+				this.local1 = res.data.documents[0].road_address.region_1depth_name
+				this.local2 = res.data.documents[0].road_address.region_2depth_name
+				this.local3 = res.data.documents[0].road_address.region_3depth_name
 
-            this.completeAddr = true
-            })
-        },
-        onApiAgentAddress () {
-            axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.agentAddress}`,
-            { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-                alert("입력성공")
-                console.log(res.data)
-                this.agentLat = res.data.documents[0].y
-                this.agentLng = res.data.documents[0].x
+				this.completeAddr = true
+				})
+		},
+		onApiAgentAddress () {
+				axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.agentAddress}`,
+				{ headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
+						alert("입력성공")
+						console.log(res.data)
+						this.agentLat = res.data.documents[0].y
+						this.agentLng = res.data.documents[0].x
 
-                this.completeAgentAddr = true
-            })
-        },
-        changeAgentAddr () {
+						this.completeAgentAddr = true
+				})
+		},
+		changeAgentAddr () {
 			this.completeAgentAddr = false
 		},
 		changeAddr () {
 			this.completeAddr = false
 		},
-    },
+	},
     
 }
 </script>

@@ -173,6 +173,7 @@ export default {
 			} else {
 				alert("아이디 또는 이메일 인증을 완료해주세요.")
 			}
+			//this.$emit('submit', { userId, password, email, name, birth, sex, phone, auth })
 		},
 		checkId () {
 			const userId = this.userId

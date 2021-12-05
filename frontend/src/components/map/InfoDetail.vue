@@ -10,7 +10,7 @@
       <v-container>
         <swiper class="swiper" :options="swiperOption">
           <swiper-slide v-for="list in imageList" :key="list.index">
-            <img :src="list">
+            <img :src="list" width="400" height="300">
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
           <div class="swiper-button-prev" slot="button-prev"></div>

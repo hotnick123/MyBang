@@ -143,7 +143,7 @@
           await api.delete(`/roomMate/delete/${this.id}`)
             .then((res) => {
               if (res.data === "") {
-                alert('글 삭제 성공');
+                alert('삭제가 완료되었습니다.');
                 this.$router.push({name: "RoomMateList"});
               } else {
                 alert('글 삭제 실패');
@@ -183,7 +183,7 @@
           .then((res) => {
 						console.log("==> res : ", res);
 	          this.$router.push({name: "RoomMateDetail", params: {id: res.data.id}});
-	          alert('댓글 등록 성공');
+	          alert('댓글이 등록되었습니다.');
 
 	          this.fetchRoomMateDetail();
 	          this.commentInput = '';
@@ -221,7 +221,7 @@
             const {data} = await this.postSaveComment(commentId, this.commentList[index].editContent);
             console.log("====> d ata : ", data);
             if (data) {
-              alert('수정 되었습니다.');
+              alert('대글이 수정되었습니다.');
               delete this.commentList[index].edit;
               delete this.commentList[index].editContent;
               await this.fetchRoomMateDetail();
@@ -237,7 +237,7 @@
 			  console.log(commentId);
         try {
           await this.deleteComment(commentId);
-          alert('삭제 되었습니다.');
+          alert('댓글이 삭제 되었습니다.');
           await this.fetchRoomMateDetail();
         } catch (e) {
           console.log(e);
