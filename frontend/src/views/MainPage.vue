@@ -39,40 +39,10 @@
 						더보기
 					</v-btn>
 				</div>
-			<!--
-				<hr>
-				<div class="tablemargin">
-					<v-card elevation="0">
-						<ul>
-							<li>
-
-								<div class="tablemargin">
-									<v-card elevation="0">
-										<v-simple-table elevation="0">
-											<tbody class="table">
-											<tr v-for="(list,idx) in lists.slice(0,5)" :key="idx" width="50px">
-												<div v-show="(idx<5)">
-													<td style="color: gray" width="40px">{{ list.newsNo }}</td>
-													<td @click="clickNews(list.address)" class="maxlength">{{ list.title }}</td>
-												</div>
-											</tr>
-											</tbody>
-										</v-simple-table>
-									</v-card>
-								</div>
-
-							</li>
-						</ul>
-					</v-card>
-				</div>
-				-->
-				<hr>
-					<div>
 						<ul>
 							<li v-for="(list,idx) in lists.slice(0,5)" :key="idx" v-show="(idx<5)"
 									@click="clickNews(list.address)">{{ list.title }}</li>
 						</ul>
-					</div>
 			</article>
 
 			<article>
@@ -483,7 +453,7 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 	}
 
 	.board_content article ul {
-		margin-top: 14px;
+		margin-top: 0px;
 		padding-left: 0;
 	}
 
@@ -687,5 +657,29 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 	#icon_wrap .inner .icon article .pic:hover i {
 		transform: scale(1.2);
 	}
+	ul {
+	  list-style: none;
+	  cursor: pointer;
+		padding-left: 0;
+	}
 
+	li {
+	  padding: 15px 2px;
+		border-bottom: 1px solid #eee;
+		color: #666;
+		font-size: 15px;
+	}
+
+	li:first-child {
+		border-top: 2px solid #ddd;
+	}
+
+	li:last-child {
+		border-bottom: 2px solid #ddd;
+	}
+
+	li:hover {
+	  background:rgba(220, 220, 220, 0.671);
+	  transition:all .3s ease
+	}
 </style>

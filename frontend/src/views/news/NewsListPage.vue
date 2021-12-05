@@ -11,17 +11,13 @@
 					<th>제목</th>
 				</tr>
 			</thead>
-
-      <!--
+			
 			<tbody>
 				<tr v-for="(list,idx) in lists.slice(0,10)" :key="idx" width="50px">
-            <div v-show="(idx<11)">
-              <td style="color: gray" width="40px">{{ list.newsNo }}</td>
-              <td @click="clickNews(list.address)" class="maxlength">{{ list.title }}</td>
-            </div>
-          </tr>
+					<td>{{ list.newsNo }}</td>
+					<td @click="clickNews(list.address)" class="maxlength">{{ list.title }}</td>
+				</tr>
 			</tbody>
-      -->
       
 		
 		</table>
