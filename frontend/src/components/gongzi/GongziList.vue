@@ -22,7 +22,7 @@
 					<td>{{gongzi.view}}</td>
 				</tr>
 			</tbody>
-		
+
 		</table>
 		<div class="btn_wrap">
 			<b-button v-if="auth" @click="gongziRegister" color="secondary">글쓰기</b-button>
@@ -57,13 +57,13 @@ export default {
 	methods: {
 		...mapActions(['fetchGongziList']),
 		readGongzi(gongziNo) {
-			this.$router.push({ 
+			this.$router.push({
 				name: 'GongziReadPage',
 				query: { "gongziNo": gongziNo } }
 			)
 		},
 		gongziRegister() {
-			
+
 			this.$router.push({ name: 'GongziRegisterPage' })
 		}
 	}
@@ -110,6 +110,10 @@ export default {
 		border-top: 1px solid #555;
 		/*border-collapse: collapse;*/
 
+	}
+
+	table tr {
+		cursor: pointer;
 	}
 
 	table th, td {
