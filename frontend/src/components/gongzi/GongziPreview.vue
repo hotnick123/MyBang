@@ -2,7 +2,10 @@
   <div>
     <ul>
 			<li v-for="list in recentGongzis" :key="list.index"
-        @click="gongziRead(list.gongziNo)">{{list.title}}</li>
+        @click="gongziRead(list.gongziNo)">
+        <span>{{list.title}}</span>
+        <span class="float-right">조회수  {{list.view}}</span>
+      </li>
     </ul>
   </div>
 </template>

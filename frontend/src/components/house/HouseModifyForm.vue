@@ -11,7 +11,7 @@
 
 						<span>중개사 주소</span>
 						<div class="d-flex">
-							<v-text-field v-model="agentAddress" required solo class="mt-3"></v-text-field>
+							<v-text-field v-model="agentAddress" required solo class="mt-3" @change="changeAgentAddr"></v-text-field>
 							<v-btn v-if="!completeAgentAddr" class="mt-5 ml-3 secondary" @click="onApiAgentAddress">확인</v-btn>
 							<v-btn v-else class="mt-5 ml-3 secondary--text" @click="onApiAgentAddress" icon>
 								<v-icon>check</v-icon>
@@ -34,7 +34,7 @@
 						<v-text-field v-model="agentMobile" required solo class="mt-3"></v-text-field>
 					</v-card>
 
-					<v-btn class="my-3" color="secondary" @click="e5 = 2">다음</v-btn>
+					<v-btn class="my-3" color="secondary" @click="e5 = 2" :disabled="!completeAgentAddr">다음</v-btn>
 				</v-stepper-content>
 
 
@@ -47,7 +47,7 @@
 
 						<span>매물의 주소</span>
 						<div class="d-flex">
-							<v-text-field v-model="address" required solo class="mt-3"></v-text-field>
+							<v-text-field v-model="address" required solo class="mt-3" @change="changeAddr"></v-text-field>
 							<v-btn v-if="!completeAddr" class="mt-5 ml-3 secondary" @click="onApiAddress">확인</v-btn>
 							<v-btn v-else class="mt-5 ml-3 secondary--text" @click="onApiAddress" icon>
 								<v-icon>check</v-icon>
@@ -97,8 +97,9 @@
 								<v-text-field input type="number" v-model="rent" required solo class="mt-3"></v-text-field>
 							</div>
 						</v-card>
+
 						<v-btn class="mb-5" text @click="e5 = 2">이전</v-btn>
-						<v-btn class="mb-5" color="secondary" @click="e5 = 3" >다음</v-btn>
+						<v-btn class="mb-5" color="secondary" @click="e5 = 3" :disabled="!completeAddr">다음</v-btn>
 					</v-stepper-content>
 				
 
@@ -218,7 +219,7 @@
 						<span>소개글</span>
 						<v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" v-model="title" required solo class="mt-3"></v-text-field>
 
-                        <span>건물사진 등록</span>
+                        <span>건물사진 등록건물사진 등록 (없으면 그냥 확인버튼)</span>
 							<v-card flat>
 								
 								<v-file-input class="mt-3" v-model="files" @change="selectImg" label="사진 선택"
@@ -247,7 +248,7 @@
 					</v-card>
 
 					<v-btn class="mb-5" text @click="e5 = 4">이전</v-btn>
-					<v-btn class="mb-5" color="secondary" type="submit" @click="onSubmit">등록</v-btn>
+					<v-btn class="mb-5" color="secondary" type="submit" @click="onSubmit" :disabled="!completeImage">등록</v-btn>
 
 				</v-stepper-content>
 					
@@ -364,8 +365,8 @@ export default {
             parkings: ['가능', '없음'],
             roomDirections: ['북향', '남향', '동향', '서향', '남동향', '남서향', '북동향', '북서향', '확인필요'],
             petcheck: ['가능', '불가능', '고양이만', '확인필요'],
-            completeAgentAddr: false,
-			completeAddr: false,
+            completeAgentAddr: true,
+			completeAddr: true,
 			completeImage: false,
 			delayImage: false
         }
@@ -375,6 +376,48 @@ export default {
         sizeM2 () {
             return this.size * 3.305785
         }
+    },
+    created () {
+        this.address = this.house.address
+        this.agentAddress = this.house.agentAddress
+        this.agentEmail = this.house.agentEmail
+        this.agentLat = this.house.agentLat
+        this.agentLng = this.house.agentLng
+        this.agentMobile = this.house.agentMobile
+        this.agentName = this.house.agentName
+        this.agentPhone = this.house.agentPhone
+        this.buildingType = this.house.buildingType
+        this.deposit = this.house.deposit
+        this.description = this.house.description
+        this.elevator = this.house.elevator
+        this.floor = this.house.floor
+        this.floorAll = this.house.floorAll
+        this.image = this.house.image
+        this.lat = this.house.lat
+        this.lng = this.house.lng
+        this.local1 = this.house.local1
+        this.local2 = this.house.local2
+        this.local3 = this.house.local3
+        this.manageCost = this.house.manageCost
+        this.manageCostInc = this.house.manageCostInc
+        this.moveinDate = this.house.moveinDate
+        this.nearSubways = this.house.nearSubways
+        this.options = this.house.options
+        this.parking = this.house.parking
+        this.pets = this.house.pets
+        this.roomDirection = this.house.roomDirection
+        this.roomType = this.house.roomType
+        this.salesType = this.house.salesType
+        this.serviceType = this.house.serviceType
+        this.size = this.house.size
+        this.sizeM2 = this.house.sizeM2
+        this.title = this.house.title
+        this.updatedAt = this.house.updatedAt
+        this.userIntro = this.house.userIntro
+        this.userName = this.house.userName
+        this.url = this.house.url
+        this.agentId = this.house.agentId
+        this.rent = this.house.rent
     },
     mounted() {
         this.agentId = this.userInfo.userId
@@ -424,118 +467,83 @@ export default {
 
 			this.completeImage = true
 		},
-        onSubmit () {
-            this.agentId = this.userInfo.userId 
-            const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
-            description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = this
+		onSubmit () {
+				this.agentId = this.userInfo.userId 
+				const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
+				description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
+				lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = this
 
-            this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
-            description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
-        },
-        onDelete () {
-            if (this.serviceType == '빌라') {
-                const { villaNo } = this.house
-                axios.delete(`http://localhost:7777/villa/${villaNo}`)
-                    .then(() => {
-                        alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'BrokerHouseListPage' })
-                    })
-                    .catch(err => {
-                        alert(err.response.data.message)
-                    })
-            } else if (this.serviceType == '원룸') {
-                const { oneroomNo } = this.house
-                axios.delete(`http://localhost:7777/oneroom/${oneroomNo}`)
-                    .then(() => {
-                        alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'BrokerHouseListPage' })
-                    })
-                    .catch(err => {
-                        alert(err.response.data.message)
-                    })
-            } else {
-                const { officetelNo } = this.house
-                axios.delete(`http://localhost:7777/officetel/${officetelNo}`)
-                    .then(() => {
-                        alert("등록하신 매물이 삭제되었습니다")
-                        this.$router.push({name: 'BrokerHouseListPage' })
-                    })
-                    .catch(err => {
-                        alert(err.response.data.message)
-                    })
-            }
-            
-        },
-        onApiAddress () {
-            axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,
-            { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-                alert("입력성공")
-                console.log(res.data)
-            this.lat = res.data.documents[0].y
-            this.lng = res.data.documents[0].x
-            this.local1 = res.data.documents[0].road_address.region_1depth_name
-            this.local2 = res.data.documents[0].road_address.region_2depth_name
-            this.local3 = res.data.documents[0].road_address.region_3depth_name
+				this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
+				description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
+				lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
+		},
+		onDelete () {
+			if (this.serviceType == '빌라') {
+					const { villaNo } = this.house
+					axios.delete(`http://localhost:7777/villa/${villaNo}`)
+							.then(() => {
+									alert("등록하신 매물이 삭제되었습니다")
+									this.$router.push({name: 'SellerHouseListPage' })
+							})
+							.catch(err => {
+									alert(err.response.data.message)
+							})
+			} else if (this.serviceType == '원룸') {
+					const { oneroomNo } = this.house
+					axios.delete(`http://localhost:7777/oneroom/${oneroomNo}`)
+							.then(() => {
+									alert("등록하신 매물이 삭제되었습니다")
+									this.$router.push({name: 'SellerHouseListPage' })
+							})
+							.catch(err => {
+									alert(err.response.data.message)
+							})
+			} else {
+					const { officetelNo } = this.house
+					axios.delete(`http://localhost:7777/officetel/${officetelNo}`)
+							.then(() => {
+									alert("등록하신 매물이 삭제되었습니다")
+									this.$router.push({name: 'SellerHouseListPage' })
+							})
+							.catch(err => {
+									alert(err.response.data.message)
+							})
+			}
+				
+		},
+		onApiAddress () {
+				axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,
+				{ headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
+						alert("입력성공")
+						console.log(res.data)
+				this.lat = res.data.documents[0].y
+				this.lng = res.data.documents[0].x
+				this.local1 = res.data.documents[0].road_address.region_1depth_name
+				this.local2 = res.data.documents[0].road_address.region_2depth_name
+				this.local3 = res.data.documents[0].road_address.region_3depth_name
 
-            this.completeAddr = true
-            })
-        },
-        onApiAgentAddress () {
-            axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.agentAddress}`,
-            { headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
-                alert("입력성공")
-                console.log(res.data)
-                this.agentLat = res.data.documents[0].y
-                this.agentLng = res.data.documents[0].x
+				this.completeAddr = true
+				})
+		},
+		onApiAgentAddress () {
+				axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.agentAddress}`,
+				{ headers: { 'Authorization': 'KakaoAK ' + '005dda6eedb914e554e8810f970149d9' }}).then(res => {
+						alert("입력성공")
+						console.log(res.data)
+						this.agentLat = res.data.documents[0].y
+						this.agentLng = res.data.documents[0].x
 
-                this.completeAgentAddr = true
-            })
-        },
-    },
-    created () {
-        this.address = this.house.address
-        this.agentAddress = this.house.agentAddress
-        this.agentEmail = this.house.agentEmail
-        this.agentLat = this.house.agentLat
-        this.agentLng = this.house.agentLng
-        this.agentMobile = this.house.agentMobile
-        this.agentName = this.house.agentName
-        this.agentPhone = this.house.agentPhone
-        this.buildingType = this.house.buildingType
-        this.deposit = this.house.deposit
-        this.description = this.house.description
-        this.elevator = this.house.elevator
-        this.floor = this.house.floor
-        this.floorAll = this.house.floorAll
-        this.image = this.house.image
-        this.lat = this.house.lat
-        this.lng = this.house.lng
-        this.local1 = this.house.local1
-        this.local2 = this.house.local2
-        this.local3 = this.house.local3
-        this.manageCost = this.house.manageCost
-        this.manageCostInc = this.house.manageCostInc
-        this.moveinDate = this.house.moveinDate
-        this.nearSubways = this.house.nearSubways
-        this.options = this.house.options
-        this.parking = this.house.parking
-        this.pets = this.house.pets
-        this.roomDirection = this.house.roomDirection
-        this.roomType = this.house.roomType
-        this.salesType = this.house.salesType
-        this.serviceType = this.house.serviceType
-        this.size = this.house.size
-        this.sizeM2 = this.house.sizeM2
-        this.title = this.house.title
-        this.updatedAt = this.house.updatedAt
-        this.userIntro = this.house.userIntro
-        this.userName = this.house.userName
-        this.url = this.house.url
-        this.agentId = this.house.agentId
-        this.rent = this.house.rent
-    },
+						this.completeAgentAddr = true
+				})
+		},
+		changeAgentAddr () {
+			this.completeAgentAddr = false
+		},
+		changeAddr () {
+			this.completeAddr = false
+		},
+	},
+    
 }
 </script>
 

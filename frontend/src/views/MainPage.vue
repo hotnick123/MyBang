@@ -8,6 +8,7 @@
 				<div class="swiper-pagination" slot="pagination"></div>
 				<div class="swiper-button-prev" slot="button-prev"></div>
 				<div class="swiper-button-next" slot="button-next"></div>
+
 			</swiper>
 			<div id=tabHouse>
 				<h1 class="main_text">어떤 집을 찾고 있나요?</h1>
@@ -34,30 +35,34 @@
 			<article>
 				<div class="more_btn">
 					<h2>뉴스</h2>
-					<v-btn depressed>
+					<v-btn @click="newsList" depressed>
 						더보기
 					</v-btn>
 
 				</div>
-				<div class="tablemargin">
-					<v-card elevation="0">
+<!--				<div class="tablemargin">-->
+<!--					<v-card elevation="0">-->
 
-								<div class="tablemargin">
-									<v-card elevation="0">
-										<v-simple-table elevation="0">
-											<tbody class="table">
-												<tr v-for="(list,idx) in lists.slice(0,5)" :key="idx" width="50px">
-													<div v-show="(idx<5)">
-	<!--													<td style="color: gray" width="40px">{{ list.newsNo }}</td>-->
-														<td @click="clickNews(list.address)" class="maxlength">{{ list.title }}</td>
-													</div>
-												</tr>
-											</tbody>
-										</v-simple-table>
-									</v-card>
-								</div>
-					</v-card>
-				</div>
+<!--								<div class="tablemargin">-->
+<!--									<v-card elevation="0">-->
+<!--										<v-simple-table elevation="0">-->
+<!--											<tbody class="table">-->
+<!--												<tr v-for="(list,idx) in lists.slice(0,5)" :key="idx" width="50px">-->
+<!--													<div v-show="(idx<5)">-->
+<!--	&lt;!&ndash;													<td style="color: gray" width="40px">{{ list.newsNo }}</td>&ndash;&gt;-->
+<!--														<td @click="clickNews(list.address)" class="maxlength">{{ list.title }}</td>-->
+<!--													</div>-->
+<!--												</tr>-->
+<!--											</tbody>-->
+<!--										</v-simple-table>-->
+<!--									</v-card>-->
+<!--								</div>-->
+<!--					</v-card>-->
+<!--				</div>-->
+						<ul>
+							<li v-for="(list,idx) in lists.slice(0,5)" :key="idx" v-show="(idx<5)"
+									@click="clickNews(list.address)">{{ list.title }}</li>
+						</ul>
 			</article>
 
 			<article>
@@ -94,100 +99,104 @@
 			<div class="product">
 				<carousel
 								:nav="false" :dots="false" :loop="true">
-				<div class="itemImg">
-					<img src="../assets/img/store1.png">
-					<div class="itemText">
-						<h2>
-							<span>퀵슬립</span>
-							<span>Q4 유로탑 롤팩 매트리스 2size</span>
-						</h2>
-						<p>273,900원</p>
-						<strong>★4.8</strong> <span>리뷰 9195</span>
+					<div class="itemImg">
+						<img src="../assets/img/store1.png">
+						<div class="itemText">
+							<h2>
+								<span>퀵슬립</span>
+								<span>Q4 유로탑 롤팩 매트리스 2size</span>
+							</h2>
+							<p>273,900원</p>
+							<strong>★4.8</strong> <span>리뷰 9195</span>
+						</div>
 					</div>
-				</div>
-				<div class="itemImg">
-					<img src="../assets/img/store2.png">
-					<div class="itemText">
-						<h2>
-							<span>미닉스</span>
-							<span>4차완판! 미닉스 미니 건조기 3kg</span>
-						</h2>
-						<p>279,000원</p>
-						<strong>★4.8</strong> <span>리뷰 3089</span>
+					<div class="itemImg">
+						<img src="../assets/img/store2.png">
+						<div class="itemText">
+							<h2>
+								<span>미닉스</span>
+								<span>4차완판! 미닉스 미니 건조기 3kg</span>
+							</h2>
+							<p>279,000원</p>
+							<strong>★4.8</strong> <span>리뷰 3089</span>
+						</div>
 					</div>
-				</div>
-				<div class="itemImg">
-					<img src="../assets/img/store3.png">
-					<div class="itemText">
-						<h2>
-							<span>두닷</span>
-							<span>콰트로 에어 데스크 16size</span>
-						</h2>
-						<p>99,000원</p>
-						<strong>★4.7</strong> <span>리뷰 4375</span>
+					<div class="itemImg">
+						<img src="../assets/img/store3.png">
+						<div class="itemText">
+							<h2>
+								<span>두닷</span>
+								<span>콰트로 에어 데스크 16size</span>
+							</h2>
+							<p>99,000원</p>
+							<strong>★4.7</strong> <span>리뷰 4375</span>
+						</div>
 					</div>
-				</div>
-				<div class="itemImg">
-					<img src="../assets/img/store4.png">
-					<div class="itemText">
-						<h2>
-							<span>보니애가구</span>
-							<span>프라제르 아쿠아텍스 4인용 소파</span>
-						</h2>
-						<p>479,000원</p>
-						<strong>★4.6</strong> <span>리뷰 2924</span>
+					<div class="itemImg">
+						<img src="../assets/img/store4.png">
+						<div class="itemText">
+							<h2>
+								<span>보니애가구</span>
+								<span>프라제르 아쿠아텍스 4인용 소파</span>
+							</h2>
+							<p>479,000원</p>
+							<strong>★4.6</strong> <span>리뷰 2924</span>
+						</div>
 					</div>
-				</div>
 
-				<div class="itemImg">
-					<img src="../assets/img/store1.png">
-					<div class="itemText">
-						<h2>
-							<span>퀵슬립</span>
-							<span>Q4 유로탑 롤팩 매트리스 2size</span>
-						</h2>
-						<p>273,900원</p>
-						<strong>★4.8</strong> <span>리뷰 9195</span>
+					<div class="itemImg">
+						<img src="../assets/img/store1.png">
+						<div class="itemText">
+							<h2>
+								<span>퀵슬립</span>
+								<span>Q4 유로탑 롤팩 매트리스 2size</span>
+							</h2>
+							<p>273,900원</p>
+							<strong>★4.8</strong> <span>리뷰 9195</span>
+						</div>
 					</div>
-				</div>
-				<div class="itemImg">
-					<img src="../assets/img/store2.png">
-					<div class="itemText">
-						<h2>
-							<span>미닉스</span>
-							<span>4차완판! 미닉스 미니 건조기 3kg</span>
-						</h2>
-						<p>279,000원</p>
-						<strong>★4.8</strong> <span>리뷰 3089</span>
+					<div class="itemImg">
+						<img src="../assets/img/store2.png">
+						<div class="itemText">
+							<h2>
+								<span>미닉스</span>
+								<span>4차완판! 미닉스 미니 건조기 3kg</span>
+							</h2>
+							<p>279,000원</p>
+							<strong>★4.8</strong> <span>리뷰 3089</span>
+						</div>
 					</div>
-				</div>
-				<div class="itemImg">
-					<img src="../assets/img/store3.png">
-					<div class="itemText">
-						<h2>
-							<span>두닷</span>
-							<span>콰트로 에어 데스크 16size</span>
-						</h2>
-						<p>99,000원</p>
-						<strong>★4.7</strong> <span>리뷰 4375</span>
+					<div class="itemImg">
+						<img src="../assets/img/store3.png">
+						<div class="itemText">
+							<h2>
+								<span>두닷</span>
+								<span>콰트로 에어 데스크 16size</span>
+							</h2>
+							<p>99,000원</p>
+							<strong>★4.7</strong> <span>리뷰 4375</span>
+						</div>
 					</div>
-				</div>
-				<div class="itemImg">
-					<img src="../assets/img/store4.png">
-					<div class="itemText">
-						<h2>
-							<span>보니애가구</span>
-							<span>프라제르 아쿠아텍스 4인용 소파</span>
-						</h2>
-						<p>479,000원</p>
-						<strong>★4.6</strong> <span>리뷰 2924</span>
+					<div class="itemImg">
+						<img src="../assets/img/store4.png">
+						<div class="itemText">
+							<h2>
+								<span>보니애가구</span>
+								<span>프라제르 아쿠아텍스 4인용 소파</span>
+							</h2>
+							<p>479,000원</p>
+							<strong>★4.6</strong> <span>리뷰 2924</span>
+						</div>
 					</div>
-				</div>
+					<!--				<img src="../assets/img/store1.png">-->
+					<!--				<img src="../assets/img/store2.png">-->
+					<!--				<img src="../assets/img/store3.png">-->
+					<!--				<img src="../assets/img/store4.png">-->
+				</carousel>
 <!--				<img src="../assets/img/store1.png">-->
 <!--				<img src="../assets/img/store2.png">-->
 <!--				<img src="../assets/img/store3.png">-->
 <!--				<img src="../assets/img/store4.png">-->
-				</carousel>
 			</div>
 		</div>
 
@@ -252,7 +261,6 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 import carousel from 'vue-owl-carousel'
 
   export default {
-
 		name: 'MainPage',
 	  components: {
 			Swiper,
@@ -294,6 +302,9 @@ import carousel from 'vue-owl-carousel'
 			},
 			roomMateList () {
 				this.$router.push({ name: 'RoomMateList' })
+			},
+			newsList () {
+				this.$router.push({name: 'NewsListPage'})
 			}
     },
 
@@ -487,17 +498,27 @@ import carousel from 'vue-owl-carousel'
 		clear: both;
 	}
 
+	/*.board_content article {*/
+	/*	float: left;*/
+	/*	width: calc(86% / 3);*/
+	/*	margin-right: 7%;*/
+
+	/*	overflow: hidden;*/
+	/*	white-space: nowrap;*/
+	/*	text-overflow:ellipsis;*/
+	/*}*/
+
+	/*.board_content article:nth-child(3) {*/
+	/*	margin-right: 0;*/
+	/*}*/
+
 	.board_content article {
 		float: left;
-		width: calc(86% / 3);
-		margin-right: 7%;
-
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow:ellipsis;
+		width: calc(85% / 3);
+		margin-left: 3%;
 	}
 
-	.board_content article:nth-child(3) {
+	.board_content article:nth-child(2) {
 		margin-right: 0;
 	}
 
@@ -524,40 +545,49 @@ import carousel from 'vue-owl-carousel'
 		background-color: #ccc;
 	}
 
-	.board_content article ul {
-		/*margin-top: 14px;*/
-		padding-left: 0;
-		cursor: pointer;
-	}
+	/*.board_content article ul {*/
+	/*	margin-top: 14px;*/
+	/*	padding-left: 0;*/
+	/*}*/
 
-	.board_content article ul li:first-child {
-		border-top: 2px solid #ddd;
-	}
+	/*.board_content article ul li {*/
+	/*	padding: 3px 0;*/
+	/*}*/
 
-	.board_content article ul li:last-child {
-		border-bottom: 2px solid #ddd;
-	}
+	/* ->>>> .board_content article ul {*/
+	/*	!*margin-top: 14px;*!*/
+	/*	padding-left: 0;*/
+	/*	cursor: pointer;*/
+	/*}*/
 
-	.board_content article ul li {
-		/*padding: 3px 0;*/
-		/*border-bottom: 1px solid #eee;*/
-	}
+	/*.board_content article ul li:first-child {*/
+	/*	border-top: 2px solid #ddd;*/
+	/*}*/
 
-	article {
+	/*.board_content article ul li:last-child {*/
+	/*	border-bottom: 2px solid #ddd;*/
+	/*}*/
 
-	}
+	/*.board_content article ul li {*/
+	/*	!*padding: 3px 0;*!*/
+	/*	!*border-bottom: 1px solid #eee;*!*/
+	/*}*/
 
-	table tr {
-		border-bottom: 1px solid #eee;
-	}
+	/*article {*/
 
-	table tr:last-child {
-		border-bottom: none;
-	}
+	/*}*/
 
-	table td {
-		border-bottom: none;
-	}
+	/*table tr {*/
+	/*	border-bottom: 1px solid #eee;*/
+	/*}*/
+
+	/*table tr:last-child {*/
+	/*	border-bottom: none;*/
+	/*}*/
+
+	/*table td {*/
+	/*	border-bottom: none;*/
+	/*}*/
 
 	/* 소개할게요, 뉴스, 공지사항 영역 끝 */
 
@@ -762,5 +792,33 @@ import carousel from 'vue-owl-carousel'
 	#icon_wrap .inner .icon article .pic:hover i {
 		transform: scale(1.2);
 	}
+	/* ---> */
+	ul {
+	  list-style: none;
+	  cursor: pointer;
+		padding-left: 0;
+	}
 
+	li {
+	  padding: 15px 2px;
+		border-bottom: 1px solid #eee;
+		color: #666;
+		font-size: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+
+	}
+
+	li:first-child {
+		border-top: 2px solid #ddd;
+	}
+
+	li:last-child {
+		border-bottom: 2px solid #ddd;
+	}
+
+	li:hover {
+	  background:rgba(220, 220, 220, 0.671);
+	  transition:all .3s ease
+	}
 </style>
