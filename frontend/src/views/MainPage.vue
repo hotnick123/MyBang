@@ -452,14 +452,7 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 		background-color: #ccc;
 	}
 
-	.board_content article ul {
-		margin-top: 0px;
-		padding-left: 0;
-	}
-
-	.board_content article ul li {
-		padding: 3px 0;
-	}
+	
 
 	/* 소개할게요, 뉴스, 공지사항 영역 끝 */
 
@@ -668,6 +661,9 @@ import RoomMatePreview from '@/components/roommate/RoomMatePreview'
 		border-bottom: 1px solid #eee;
 		color: #666;
 		font-size: 15px;
+		white-space: nowrap; 
+		overflow: hidden;
+
 	}
 
 	li:first-child {
