@@ -2,7 +2,10 @@
   <div>
     <ul>
 			<li v-for="list in recentRoomMates" :key="list.index"
-        @click="roomMateRead(list.id)">{{list.title}} [{{list.count}}]</li>
+        @click="roomMateRead(list.id)">
+        <span>{{list.title}}</span>
+        <span class="float-right">조회수 {{list.count}}</span>
+      </li>
     </ul>
   </div>
 </template>

@@ -1,9 +1,12 @@
 <template>
   <div>
-      <div>
-        <h1>매물 등록</h1>
+      <div class="mt-10">
+        <h1 align="center">매물 등록</h1>
       </div>
+      <v-card width="600" class="mx-auto mt-10" flat>
         <house-register-form @submit="onSubmit"/>
+      </v-card>
+        
   </div>  
 </template>
 
@@ -81,23 +84,11 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
-* {
-  font-family: 'Noto Sans KR', sans-serif;
-  margin: 0 auto;
-}
-
-@font-face {
-    font-family: 'GowunDodum-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 h1 {
-    font-family: 'GowunDodum-Regular';
-    font-size: 30px;
-    text-align: center;
-    padding: 5% 0% 5% 0%;
-}
+		font-size: 33px;
+		font-weight: bold;
+		width: 100%;
+		color: #000;
+		font-family: 'Noto Sans KR', sans-serif;
+	}
 </style>

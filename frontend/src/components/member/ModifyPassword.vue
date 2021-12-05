@@ -1,12 +1,16 @@
 <template>
   <v-container>
-    <v-card class="pa-5">
-      <v-card-title>비밀번호를 재설정해주세요.</v-card-title>
-      <v-text-field label="pw" v-model="password" type="password" :rules="pwRules"></v-text-field>
-      <v-text-field label="pw" v-model="checkPassword" type="password" :rules="matchPwRules"></v-text-field>
+    <h1 align="center">비밀번호 재설정</h1>
+    <v-card class="pa-10 mx-auto mt-7 mb-15" width="500">
+      <span>비밀번호</span>
+      <v-text-field v-model="password" type="password" :rules="pwRules"
+        class="mt-3" solo></v-text-field>
+      <span>비밀번호 확인</span>
+      <v-text-field v-model="checkPassword" type="password" :rules="matchPwRules"
+        class="mt-3" solo></v-text-field>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="modifyPw" @keydown.enter="modifyPw">확인</v-btn>
+        <v-btn @click="modifyPw" class="secondary">확인</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -49,3 +53,14 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+h1 {
+  font-size: 33px;
+  font-weight: bold;
+  width: 100%;
+  color: #000;
+  margin-top: 50px;
+}
+</style>
