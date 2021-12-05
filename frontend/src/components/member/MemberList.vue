@@ -151,7 +151,7 @@ export default {
 			.then(() =>{
 				this.pausedialog = false
 				this.fetchMemberList()
-				alert("해당아이디는 정지 하였습니다.")
+				alert("해당아이디는 정지/해제 하였습니다.")
 			})
 		},
 		hostUser () {

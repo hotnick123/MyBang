@@ -69,7 +69,7 @@
             .then((res) => {
 
               this.$router.push({name: "RoomMateList", params: {id: res.data.id }});
-              alert("등록 성공");
+              alert("게시글이 등록되었습니다.");
             }).catch((err) => {
             console.log(err);
             alert("등록 실패");
@@ -87,7 +87,7 @@
 
               console.log(res);
 	            this.$router.push({name: "RoomMateDetail", params: {id: this.$route.params.id}});
-	            alert("수정 성공");
+	            alert("게시글이 수정되었습니다.");
 		          }).catch((err) => {
 		            console.log("==> err : ", err);
 		            alert("수정 실패");
@@ -107,6 +107,7 @@
 		padding-top: 100px;
 		margin: 0 auto;
 		font-family: 'Gowun Dodum', sans-serif;
+		padding-bottom: 100px;
 	}
 
 	.v-application a {
